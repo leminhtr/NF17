@@ -36,7 +36,7 @@ nav{
 	$vEmail=$_POST['email'];
   /* Inscription */
 
-	$vSql="SELECT I.mail FROM Candidats C, Individus I WHERE id_candidat=id_individu;"; 
+	$vSql="SELECT I.mail FROM Candidats C, Individus I WHERE C.id_candidat=I.id_individu;"; 
 	$vQuery=pg_query($vConn, $vSql);
 	$vverif = 0; 
 	while ($vResult = pg_fetch_array($vQuery) and $vverif==0 ) {
@@ -46,11 +46,12 @@ nav{
 			/*COMMENT ON PEUT STOPER ICI SI PAS CORRECT???????????*/
 	}
 	echo "Vous n'avez jamais créé de CV chez nous. Créez-le maintenant!";
+	if ($vverif == 0)
+		{echo '<p><a href="insert3.php">Continuer</a></p>';}
 
 ?>
 
 <hr/>
-<p><a href="insert3.php">Continuer</a></p>
 
 </body>
 </html>
