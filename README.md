@@ -1,4 +1,6 @@
 git log	//historique des actions
+git config credential.helper store //stocker id -> permet de rester logger
+
 
 dossier local ->  dossier temp INIT -> dossier validation HEAD
 
