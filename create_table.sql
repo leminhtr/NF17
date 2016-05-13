@@ -17,7 +17,7 @@ CREATE TABLE Formations (
 	etablissement VARCHAR(100) NOT NULL,
 	pays VARCHAR(50),
 	ville VARCHAR(50),
-	domaine_etude INTEGER REFERENCES Domaine_Etudes(id_DE),
+	domaine_etude INTEGER REFERENCES Domaines_Etudes(id_DE),
 	UNIQUE (date_debut, date_fin, etablissement)
 );
 
@@ -35,12 +35,17 @@ CREATE TABLE Secteurs_Activites (
 	SA_en VARCHAR (50) UNIQUE NOT NULL
 );
 
-CREATE TABLE Experiences_Pro (
+CREATE TABLE SecteurEntreprise(
+	id_SE INTEGER PRIMARY KEY,
+	nom_entreprise VARCHAR(50) UNIQUE NOT NULL,
+	secteur_activite INTEGER REFERENCES Secteurs_activites(id_SA)
+);
+
+CREATE TABLE Experiences_Pro(
 	id_exp_pro INTEGER PRIMARY KEY,
-	nom_entreprise VARCHAR (50) NOT NULL,
+	nom_entreprise VARCHAR (50) REFERENCES SecteurEntreprise(nom_entreprise),
 	date_debut DATE NOT NULL,
 	date_fin DATE NOT NULL,
-	secteur_activite INTEGER REFERENCES Secteurs_Activites(id_SA),
 	UNIQUE (nom_entreprise, date_debut, date_fin)
 );
 
@@ -88,12 +93,18 @@ CREATE TABLE Langues(
 
 /*Package Candidat, CV et autres classes hors packages*/
 
+CREATE TABLE DatePublication(
+	id_date_pub INTEGER PRIMARY KEY,
+	ISBN  VARCHAR(20) UNIQUE NOT NULL,
+	date DATE
+);
+
 CREATE TABLE Publications(
-      titre VARCHAR(100),
-      isbn VARCHAR(20),
-      date DATE,
-      contenu TEXT,     /*mini-résumé*/
-      PRIMARY KEY (titre,isbn)
+	id_pub INTEGER PRIMARY KEY,
+	titre VARCHAR (100) NOT NULL,
+	id_date_pub INTEGER REFERENCES DatePublication(id_date_pub),
+	contenu TEXT NOT NULL, /*mini-résumé*/
+	UNIQUE (titre, id_date_pub)
 );
 
 CREATE TABLE Individus(
@@ -105,7 +116,7 @@ CREATE TABLE Individus(
 
 CREATE TYPE TELEPHONE_TYPE AS ENUM ('fixe','portable','pro'); /*ENUM type du telephone*/
 
-CREATE CREATE TABLE Candidats(
+CREATE TABLE Candidats(
       id_candidat INTEGER REFERENCES Individus(id_individu),
       identifiant VARCHAR(50) UNIQUE NOT NULL,  /*clé candidate*/
       mot_de_passe VARCHAR(50) NOT NULL,
@@ -113,7 +124,7 @@ CREATE CREATE TABLE Candidats(
       telephone_type TELEPHONE_TYPE NOT NULL,
       URL_web VARCHAR(255),
       type_web VARCHAR(5),
-      CHECK (type_web IN ('perso', 'pro')),
+      CHECK (type_web IN ('fixe','perso', 'pro')),
       PRIMARY KEY (id_candidat)
 );
 
@@ -154,7 +165,7 @@ CREATE TABLE  Posseder_Competence(
    id_candidat INTEGER REFERENCES Candidats(id_candidat),
    nom VARCHAR(50),
    langue LANGUE,
-   PRIMARY KEY ( id_candidat, nom ,langue),
+   PRIMARY KEY (id_candidat, nom ,langue),
    FOREIGN KEY (nom, langue) REFERENCES Competences( nom,langue )
 );
 
@@ -178,18 +189,16 @@ CREATE TABLE Participer_Association(
 
 
 CREATE TABLE Ecrire_Publication(
-  id_candidat INTEGER REFERENCES Candidats(id_candidat),
-  titre VARCHAR(100) ,
-  isbn VARCHAR(20),
-   FOREIGN KEY (titre, isbn) REFERENCES Publications( titre,isbn),
-  PRIMARY KEY( id_candidat,titre,isbn)
+	id_candidat INTEGER REFERENCES Candidats(id_candidat),
+	id_publication INTEGER REFERENCES Publications(id_pub),
+	PRIMARY KEY (id_candidat, id_publication)
 );
 
 CREATE TABLE Parler_Langue(
 	id_candidat INTEGER REFERENCES Candidats(id_candidat),
 	id_langue INTEGER,
 	niveau_langue CHAR(2),
-	CHECK (niveau_langue IN ('A1','A2','B1','B2','C1','C2'),
+	CHECK (niveau_langue IN ('A1','A2','B1','B2','C1','C2')),
 	FOREIGN KEY (id_langue) REFERENCES Langues(id),
 	PRIMARY KEY( id_candidat,id_langue)
 );
