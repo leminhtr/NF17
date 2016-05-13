@@ -14,7 +14,6 @@ git config --global color.branch auto	//environnement
 
 
 
-
 dossier local ->  dossier temp INIT -> dossier validation HEAD -> SERVEUR
 
 local vers INIT
