@@ -124,7 +124,7 @@ CREATE TABLE Candidats(
       telephone_type TELEPHONE_TYPE NOT NULL,
       URL_web VARCHAR(255),
       type_web VARCHAR(5),
-      CHECK (type_web IN ('fixe','perso', 'pro')),
+      CHECK (type_web IN ('perso', 'pro')),
       PRIMARY KEY (id_candidat)
 );
 
@@ -134,12 +134,12 @@ CREATE TABLE Referents(
       employeur VARCHAR(50),
       telephone VARCHAR(20),
       telephone_type TELEPHONE_TYPE,
-      PRIMARY KEY (id_referent)
+      PRIMARY KEY (id_referent),
+      CHECK( (SELECT id_referents FROM Referents) INTERSECT (SELECT id_candidat FROM Candidats) IS NULL)
 );
 
 /* !!! CONTRAINTES (héritage référence)
 Proj(Individu, id_individu) IN Proj(Candidats, id_candidat) UNION Proj(Referents, id_referent)
-Proj(Referents, id_referents) INTERSECTION Proj(Candidats, id_candidat) = VIDE = ∅
  */
 
 CREATE TABLE CV(
@@ -206,5 +206,6 @@ CREATE TABLE Parler_Langue(
 CREATE TABLE Posseder_Referent(
     id_candidat INTEGER REFERENCES Candidats(id_candidat),
     id_referent INTEGER REFERENCES Referents(id_referent),
-    PRIMARY KEY(id_candidat, id_referent)
+    PRIMARY KEY(id_candidat, id_referent),
+    CHECK( (SELECT id_candidat FROM Candidats) IN (SELECT id_candidat FROM Posseder_Referent) )
 );
