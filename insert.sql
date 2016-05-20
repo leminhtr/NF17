@@ -58,7 +58,7 @@ INSERT INTO Publications (id_pub, titre, id_date_pub, contenu) VALUES ('1','publ
 COMMIT;
 BEGIN TRANSACTION;
 
-INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('1','Legeron','Camille','camille.legeron@etu.utc.fr');
+INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('1','Legeron','Camille','clegeron@etu.utc.fr');
 INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('2','Tong','Chen','chentong@etu.utc.fr');
 INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('3','Edesseau','Eumael','edesseau@etu.utc.fr');
 INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('4','Tri Le','Minh','leminhtr@etu.utc.fr');
