@@ -11,17 +11,22 @@ DROP TABLE Referents;
 DROP TABLE Candidats;
 DROP TABLE Individus;
 DROP TABLE Publications;
+DROP TABLE DatePublication;
 DROP TABLE Langues;
 DROP TABLE Postes_Associations_Traduits;
 DROP TABLE Postes_Associations;
 DROP TABLE Status;
 DROP TABLE Experiences_Pro_Traduites;
 DROP TABLE Experiences_Pro;
+DROP TABLE SecteurEntreprise;
 DROP TABLE Secteurs_Activites;
 DROP TABLE Formations_Traduites;
 DROP TABLE Formations;
 DROP TABLE Domaines_Etudes;
 DROP TABLE Competences;
+
+DROP TYPE LANGUE;
+DROP TYPE TELEPHONE_TYPE;
 
 
 

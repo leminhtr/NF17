@@ -1,3 +1,7 @@
+BEGIN TRANSACTION;
+
+CREATE TYPE LANGUE AS ENUM ('EN','FR');  /*ENUM type Langue*/
+
 CREATE TABLE Competences (
             nom VARCHAR(50),
             langue LANGUE,
@@ -56,7 +60,7 @@ CREATE TABLE Experiences_Pro_Traduites (
 	PRIMARY KEY (id_exp_pro, fonction, langue)
 );
 
-CREATE TYPE LANGUE AS ENUM ('EN','FR');  /*ENUM type Langue*/
+
 
 /*Package Poste Associations (3 tables)*/
 
@@ -124,35 +128,46 @@ CREATE TABLE Candidats(
       telephone_type TELEPHONE_TYPE NOT NULL,
       URL_web VARCHAR(255),
       type_web VARCHAR(5),
-      CHECK (type_web IN ('perso', 'pro')),
+      CHECK (type_web IN ('perso','pro')),
       PRIMARY KEY (id_candidat)
 );
 
+/*
+CREATE VIEW Referents_et_candidats  AS 
+SELECT id_referents FROM Referents 
+INTERSECT 
+SELECT id_candidat FROM Candidats;
+*/
 CREATE TABLE Referents(
       id_referent INTEGER REFERENCES Individus(id_individu),
       situation_pro VARCHAR(50),
       employeur VARCHAR(50),
       telephone VARCHAR(20),
       telephone_type TELEPHONE_TYPE,
-      PRIMARY KEY (id_referent),
-      CHECK( (SELECT id_referents FROM Referents) INTERSECT (SELECT id_candidat FROM Candidats) IS NULL)
+      PRIMARY KEY (id_referent)
+
 );
+/*CETTE CONTRAINTE NE MARCHE PAS
+      CHECK( (SELECT id_referents FROM Referents INTERSECT SELECT 	id_candidat FROM Candidats) IS NULL)
+*/
 
 /* !!! CONTRAINTES (héritage référence)
 Proj(Individu, id_individu) IN Proj(Candidats, id_candidat) UNION Proj(Referents, id_referent)
  */
 
 CREATE TABLE CV(
+	id_CV INTEGER,
       candidat INTEGER REFERENCES Candidats(id_candidat),
       statut VARCHAR(12),
       date_creation DATE NOT NULL,
       date_maj DATE NOT NULL,
       CHECK (statut IN ('desactive','active','confidentiel')),
-      PRIMARY KEY (candidat)
+      PRIMARY KEY (id_CV)
 );
+/*modification de la table car une clé étrangère ne peut pas être clé primaire à elle seule*/
 
 CREATE TABLE CV_Traduit (
-      candidat INTEGER REFERENCES CV(candidat),
+      candidat INTEGER REFERENCES CV(id_CV),
       langue LANGUE,
       titre VARCHAR(60) NOT NULL,
       infos_complementaires TEXT,
@@ -206,6 +221,10 @@ CREATE TABLE Parler_Langue(
 CREATE TABLE Posseder_Referent(
     id_candidat INTEGER REFERENCES Candidats(id_candidat),
     id_referent INTEGER REFERENCES Referents(id_referent),
-    PRIMARY KEY(id_candidat, id_referent),
-    CHECK( (SELECT id_candidat FROM Candidats) IN (SELECT id_candidat FROM Posseder_Referent) )
+    PRIMARY KEY(id_candidat, id_referent)
+    
 );
+/* MARCHE PAS: erreur : ne peut pasn utiliser une sous-requête dans la contrainte de vérification
+CHECK( (SELECT id_candidat FROM Candidats) IN (SELECT id_candidat FROM Posseder_Referent) )
+*/
+COMMIT;
