@@ -80,6 +80,9 @@ BEGIN TRANSACTION;
 
 INSERT INTO CV (id_CV, candidat, statut, date_creation, date_maj) VALUES ('1', '5','active','2012-06-23','2012-06-23');
 
+INSERT INTO CV_traduit (id_CV, langue, titre) VALUES ('1','FR','Recherche de stage');
+INSERT INTO CV_traduit (id_CV, langue, titre) VALUES ('1','EN','Searching for a job');
+
 
 INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('5','Sport','FR');
 INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('5','Sport','EN');
