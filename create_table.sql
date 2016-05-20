@@ -167,11 +167,11 @@ CREATE TABLE CV(
 /*modification de la table car une clé étrangère ne peut pas être clé primaire à elle seule*/
 
 CREATE TABLE CV_Traduit (
-      candidat INTEGER REFERENCES CV(id_CV),
+      id_CV INTEGER REFERENCES CV(id_CV),
       langue LANGUE,
       titre VARCHAR(60) NOT NULL,
       infos_complementaires TEXT,
-      PRIMARY KEY (candidat,langue)
+      PRIMARY KEY (id_CV,langue)
 );
 
 /* Relations entre les classes */
