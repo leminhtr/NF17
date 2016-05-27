@@ -25,7 +25,7 @@
 		</br>
 		<p>Espace Référents</p>
 		</br>
-		<li><a href="select.php">Consulter les CV</a></li>
+		<li><a href="select.html">Consulter les CV</a></li>
 	    </ul>
 	</nav>
 	
