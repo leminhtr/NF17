@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Inscription Soutenance NF17</title>
+</head>
+<body>
+<h1>Inscriptions a la soutenance de NF17</h1>
+<?php
+	/* Connexion à la base de données */
+	include "connect.php";
+	include "inscription1_param.php";
+	$vConn = fConnect();
+
+	/* Récupération des variables passées par le fomulaire */
+	$login = $_POST['login'];
+	$mdp = $_POST['mdp'];
+	$num = $_POST['num'];
+
+	/* Inscription */
+	$vSql="UPDATE tGroupe
+            SET session=$num
+            WHERE login='$login'";
+  
+	$vQuery=pg_query($vConn,$vSql);
+	echo "<p>Inscription de $vLogin a la session $vChoix validee</p>";
+?>
+<hr/>
+<p><a href="inscription1.php">Retour</a></p>
+</body>
+</html>
