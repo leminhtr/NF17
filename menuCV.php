@@ -1,6 +1,6 @@
 <html>
    <head>
-        <title> Bienvenu ici:les informations CV </title>
+        <title> Bienvenue ici:les informations CV </title>
 	<meta charset = "UTF-8">
 	<style>
 		nav{
