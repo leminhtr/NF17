@@ -57,8 +57,7 @@
                 $vQuery=pg_query($vConn, $vSql);
 
                 /*select html du domaine*/
-                echo"
-                <select name='domaine' size='1'>";
+                echo"<select name='domaine' size='1'>";
 
                     while ($vResult = pg_fetch_array($vQuery))
                     {
@@ -71,7 +70,7 @@
             </td>
         </tr>
     </table>
-
+<br>
     <INPUT TYPE='submit' value='Valider'>
 </form>
 

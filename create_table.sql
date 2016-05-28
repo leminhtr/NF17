@@ -156,7 +156,7 @@ Proj(Individu, id_individu) IN Proj(Candidats, id_candidat) UNION Proj(Referents
  */
 
 CREATE TABLE CV(
-	id_CV INTEGER,
+	    id_CV INTEGER,
       candidat INTEGER REFERENCES Candidats(id_candidat),
       statut VARCHAR(12),
       date_creation DATE NOT NULL,

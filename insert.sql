@@ -2,9 +2,8 @@ BEGIN TRANSACTION;
 
 INSERT INTO Competences (nom, langue) VALUES ('Sport','FR');
 INSERT INTO Competences (nom, langue) VALUES ('Sport','EN');
-INSERT INTO Competences (nom, langue) VALUES ('SQL','FR');
-INSERT INTO Competences (nom, langue) VALUES ('SQL','EN');
-
+INSERT INTO Competences (nom, langue) VALUES ('database','EN');
+INSERT INTO competences (nom, langue) VALUES ('base de donnée','FR');
 
 INSERT INTO Domaines_Etudes (id_DE, DE_fr, DE_en) VALUES ('1','Informatique','Computer sciences');
 INSERT INTO Domaines_Etudes (id_DE, DE_fr, DE_en) VALUES ('2','Biologie','Biology');
@@ -25,8 +24,11 @@ INSERT INTO Secteurs_Activites (id_SA, SA_fr, SA_en) VALUES ('2','Restauration',
 
 INSERT INTO SecteurEntreprise (id_SE, nom_entreprise, secteur_activite) VALUES ('1','Renaud','1');
 INSERT INTO SecteurEntreprise (id_SE, nom_entreprise, secteur_activite) VALUES ('2','Peugot','1');
+INSERT INTO SecteurEntreprise (id_SE, nom_entreprise, secteur_activite) VALUES ('3','Buffalo Grill','2');
 
-INSERT INTO Experiences_Pro (id_exp_pro, nom_entreprise, date_debut, date_fin) VALUES ('1','Renaud','2013-06-21','2015-06-21'); 
+INSERT INTO Experiences_Pro (id_exp_pro, nom_entreprise, date_debut, date_fin) VALUES ('1','Renaud','2013-06-21','2015-06-21');
+INSERT INTO Experiences_Pro (id_exp_pro, nom_entreprise, date_debut, date_fin) VALUES ('2','Peugot','2014-06-21','2015-06-21');
+INSERT INTO Experiences_Pro (id_exp_pro, nom_entreprise, date_debut, date_fin) VALUES ('3','Peugot','2012-06-21','2015-06-21');
 
 COMMIT;
 BEGIN TRANSACTION;
@@ -61,12 +63,14 @@ BEGIN TRANSACTION;
 INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('1','Legeron','Camille','clegeron@etu.utc.fr');
 INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('2','Tong','Chen','chentong@etu.utc.fr');
 INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('3','Edesseau','Eumael','edesseau@etu.utc.fr');
-INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('4','Tri Le','Minh','leminhtr@etu.utc.fr');
+INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('6','Le','Minh Tri','minh-tri.le@etu.utc.fr');
 INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('5','Candidat1','winner','zoulou@etu.utc.fr');
 
 
 INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES ('5', 'zoulou','zoulou', '0654852635','portable');
-
+INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES ('4', 'leminhtr','leminhtr', '0654852636','portable');
+INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES ('6', 'minhtrile','minhtrile', '0654852637','portable');
+INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES ('1', 'camille','camille', '0654852638','portable');
 
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES ('1','eleveNF17','Benjamin Lussier');
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES ('2','eleveNF17','Benjamin Lussier');
@@ -79,6 +83,8 @@ BEGIN TRANSACTION;
 
 
 INSERT INTO CV (id_CV, candidat, statut, date_creation, date_maj) VALUES ('1', '5','active','2012-06-23','2012-06-23');
+INSERT INTO CV (id_CV, candidat, statut, date_creation, date_maj) VALUES ('2', '4','confidentiel','2012-06-22',current_date);
+INSERT INTO CV (id_CV, candidat, statut, date_creation, date_maj) VALUES ('3', '6','desactive','2012-06-21',current_date);
 
 INSERT INTO CV_traduit (id_CV, langue, titre) VALUES ('1','FR','Recherche de stage');
 INSERT INTO CV_traduit (id_CV, langue, titre) VALUES ('1','EN','Searching for a job');
@@ -87,10 +93,15 @@ INSERT INTO CV_traduit (id_CV, langue, titre) VALUES ('1','EN','Searching for a 
 INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('5','Sport','FR');
 INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('5','Sport','EN');
 INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('5','SQL','FR');
+INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('5','base de donnée','FR');
+INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('4','base de donnée','FR');
+INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('6','base de donnée','FR');
 
 INSERT INTO Suivre_Formation (id_candidat, id_formation) VALUES ('5','1');
 
 INSERT INTO Avoir_Experience (id_candidat, id_exp_pro) VALUES ('5','1');
+INSERT INTO Avoir_Experience (id_candidat, id_exp_pro) VALUES ('5','2');
+INSERT INTO Avoir_Experience (id_candidat, id_exp_pro) VALUES ('5','3');
 
 INSERT INTO Participer_Association (id_candidat, id_asso) VALUES ('5','1');
 
