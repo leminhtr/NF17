@@ -41,7 +41,7 @@ CREATE TABLE Secteurs_Activites (
 
 CREATE TABLE SecteurEntreprise(
 	id_SE INTEGER PRIMARY KEY,
-	nom_entreprise VARCHAR(50) UNIQUE NOT NULL,
+	nom_entreprise VARCHAR(50) UNIQUE NOT NULL, /*clé candidate*/
 	secteur_activite INTEGER REFERENCES Secteurs_activites(id_SA)
 );
 
@@ -156,7 +156,7 @@ Proj(Individu, id_individu) IN Proj(Candidats, id_candidat) UNION Proj(Referents
  */
 
 CREATE TABLE CV(
-	    id_CV INTEGER,
+	   id_CV INTEGER,
       candidat INTEGER REFERENCES Candidats(id_candidat),
       statut VARCHAR(12),
       date_creation DATE NOT NULL,

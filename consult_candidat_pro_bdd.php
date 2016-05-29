@@ -48,11 +48,11 @@
 
 <table>
     <tr>
-        <td><center>Nom</center></td>
-        <td><center>Prénom</center></td>
-        <td><center>Mail</center></td>
-        <td><center>Téléphone (type de numéro)</center></td>
-        <td><center>Site web (type de site)</center></td>
+        <th><center>Nom</center></th>
+        <th><center>Prénom</center></th>
+        <th><center>Mail</center></th>
+        <th><center>Téléphone (type de numéro)</center></th>
+        <th><center>Site web (type de site)</center></th>
     </tr>
 
 <?php
@@ -84,14 +84,17 @@ $query=pg_query($vConn,$sql_query);
 
     while ($result=pg_fetch_array($query))
     {
-        if($result[7]='active')
+        if($result[7]=='active')
         {
             echo"<tr>";
             echo"<td><center>$result[0]</center</td>";  //Nom
             echo"<td><center>$result[1]</center</td>";  //Prénon
             echo"<td><center>$result[2]</center</td>";  //Mail
             echo"<td><center>$result[3]</center</td>";  //Téléphone
-            echo"<td><center>$result[5]</center</td>";  //Site web (URL)
+            if(!empty($result[5]))
+                echo"<td><center>$result[5]</center</td>";  //Site web (URL) non vide
+            else
+                echo"<td><center><i>Non renseigné</i></center></td>";          //Site web est vide
             echo"</tr>";
 
             echo"<tr>";                 //saut ligne car on veut type numero/type site en dessous du numero/site
@@ -99,9 +102,11 @@ $query=pg_query($vConn,$sql_query);
             echo"<td><center>($result[4])</center</td>";  //Type de numéro
             if(!empty($result[6]))
                 echo"<td><center>($result[6])</center</td>";  //Type de site
+            else
+                echo"<td><center><i>Non renseigné</i></center></td>";          //Site web est vide
             echo"</tr>";
         }
-        else
+        else    //confidentiel
         {
             echo"<tr>";
             echo"<td><center>$result[0]</center</td>";  //Nom

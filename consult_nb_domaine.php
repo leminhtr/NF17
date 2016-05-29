@@ -41,6 +41,10 @@
 
 <h1>Sélectionner un domaine pour consulter le nombre de candidats connaissant ce domaine d'étude</h1>
 
+<br>
+<br>
+<br>
+
 <form action="consult_nb_domaine_candidat.php" method="POST">
     <table>
         <tr>

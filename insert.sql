@@ -9,12 +9,13 @@ INSERT INTO Domaines_Etudes (id_DE, DE_fr, DE_en) VALUES ('1','Informatique','Co
 INSERT INTO Domaines_Etudes (id_DE, DE_fr, DE_en) VALUES ('2','Biologie','Biology');
 
 
-INSERT INTO Formations (id_formation, date_debut, date_fin, etablissement, domaine_etude) VALUES ('1','2010-06-21','2012-06-21','UTC','1');
+INSERT INTO Formations (id_formation, date_debut, date_fin, etablissement,pays, ville, domaine_etude) VALUES ('1','2010-06-21','2012-06-21','UTC','France','Compiègne','1');
 INSERT INTO Formations (id_formation, date_debut, date_fin, etablissement, domaine_etude) VALUES ('2','2010-02-10','2012-02-10','UTC','2');
 INSERT INTO Formations (id_formation, date_debut, date_fin, etablissement, domaine_etude) VALUES ('3','2010-06-23','2013-06-21','UTC','2');
 
 
 INSERT INTO Formations_Traduites (titre, type, langue, id_formation) VALUES ('Je_comprends pas','bah_rien','EN','3');
+INSERT INTO Formations_Traduites (titre, type, langue, id_formation) VALUES ('Diplôme ingénieur','Master','FR','3');
 
 COMMIT;
 BEGIN TRANSACTION;
@@ -29,6 +30,10 @@ INSERT INTO SecteurEntreprise (id_SE, nom_entreprise, secteur_activite) VALUES (
 INSERT INTO Experiences_Pro (id_exp_pro, nom_entreprise, date_debut, date_fin) VALUES ('1','Renaud','2013-06-21','2015-06-21');
 INSERT INTO Experiences_Pro (id_exp_pro, nom_entreprise, date_debut, date_fin) VALUES ('2','Peugot','2014-06-21','2015-06-21');
 INSERT INTO Experiences_Pro (id_exp_pro, nom_entreprise, date_debut, date_fin) VALUES ('3','Peugot','2012-06-21','2015-06-21');
+
+INSERT INTO experiences_pro_traduites (id_exp_pro, fonction, langue) VALUES ('1','ingénieur','FR');
+INSERT INTO experiences_pro_traduites (id_exp_pro, fonction, langue) VALUES ('1','engineer','EN');
+INSERT INTO experiences_pro_traduites (id_exp_pro, fonction, langue) VALUES ('2','RH','FR');
 
 COMMIT;
 BEGIN TRANSACTION;
@@ -67,7 +72,9 @@ INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('6','Le','Minh Tr
 INSERT INTO Individus (id_individu, nom, prenom, mail) VALUES ('5','Candidat1','winner','zoulou@etu.utc.fr');
 
 
-INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES ('5', 'zoulou','zoulou', '0654852635','portable');
+INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type, url_web) VALUES ('5', 'zoulou','zoulou', '0654852635','portable','https://google.fr');
+UPDATE Candidats SET url_web='https://google.fr' where id_candidat='5';
+
 INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES ('4', 'leminhtr','leminhtr', '0654852636','portable');
 INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES ('6', 'minhtrile','minhtrile', '0654852637','portable');
 INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES ('1', 'camille','camille', '0654852638','portable');
@@ -76,6 +83,7 @@ INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES ('1','eleve
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES ('2','eleveNF17','Benjamin Lussier');
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES ('3','eleveNF17','Benjamin Lussier');
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES ('4','eleveNF17','Benjamin Lussier');
+
 
 
 COMMIT;
@@ -98,6 +106,8 @@ INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('4','base de 
 INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES ('6','base de donnée','FR');
 
 INSERT INTO Suivre_Formation (id_candidat, id_formation) VALUES ('5','1');
+INSERT INTO Suivre_Formation (id_candidat, id_formation) VALUES ('5','2');
+INSERT INTO Suivre_Formation (id_candidat, id_formation) VALUES ('5','3');
 
 INSERT INTO Avoir_Experience (id_candidat, id_exp_pro) VALUES ('5','1');
 INSERT INTO Avoir_Experience (id_candidat, id_exp_pro) VALUES ('5','2');

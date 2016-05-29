@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Consulter les CV</title>
+    <title>Consulter le parcours d'un candidat</title>
 </head>
 <body>
 
@@ -39,22 +39,27 @@
     }
 </style>
 
-<h1>Consulter les informations sur les candidats</h1>
+<h1>Choisissez le candidat dont vous souhaitez consulter le parcours</h1>
 
 <br>
 <br>
 <br>
 
-<li><a href="consult_nb_domaine.php">Consulter le nombre de candidats par domaines d'études</a></li>
-<br>
-<li><a href="consult_candidat_pro_bdd.php">Consulter la liste des candidats ayant comme compétence "base de donnée" et plus de 5 ans d'expérience</a></li>
-<br>
-<li><a href="consult_parcours_candidat.html">Consulter le parcours d'un candidat (diplomes, postes occupés, nombre d'expériences professionnelles acquise, langues maîtrisées)</a></li>
-<br>
-<li><a href="consult_candidat_critere.html">Consulter des candidats en fonction de critères (nombre d'expériences professionnelles, année d'obtention du dernier diplome, poste souhaité)</a></li>
-<br>
+<form method="POST" action="consult_parcours_candidat.php">
+    <table>
+        <tr>
+            <th>Nom</th>
+            <td><input type="text" name="nom"></td>
+        </tr>
+        <tr>
+            <th>Prénom</th>
+            <td><input type="text" name="prenom"></td>
+        </tr>
+    </table>
 
-
+<br>
+<input type="submit" value="Valider">
+</form>
 
 
 </body>
