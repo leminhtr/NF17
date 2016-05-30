@@ -1,3 +1,11 @@
+DROP VIEW candidats_domaines;
+DROP VIEW individus_candidats;
+DROP VIEW candidats_formations;
+DROP VIEW candidats_langues;
+DROP VIEW entreprises_secteurs;
+DROP VIEW candidats_experiences_pro;
+
+
 DROP TABLE Posseder_Referent;
 DROP TABLE Parler_Langue;
 DROP TABLE Ecrire_Publication;
@@ -8,6 +16,7 @@ DROP TABLE Suivre_Formation;
 DROP TABLE CV_Traduit;
 DROP TABLE CV;
 DROP TABLE Referents;
+
 DROP TABLE Candidats;
 DROP TABLE Individus;
 DROP TABLE Publications;
