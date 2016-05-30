@@ -9,13 +9,13 @@ CREATE TABLE Competences (
 );
 
 CREATE TABLE Domaines_Etudes (
-	id_DE INTEGER PRIMARY KEY,
+	id_DE SERIAL PRIMARY KEY,
 	DE_fr VARCHAR(50) UNIQUE NOT NULL,
 	DE_en VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE Formations (
-	id_formation INTEGER PRIMARY KEY,
+	id_formation SERIAL PRIMARY KEY,
 	date_debut DATE NOT NULL,
 	date_fin DATE NOT NULL,
 	etablissement VARCHAR(100) NOT NULL,
@@ -34,19 +34,19 @@ CREATE TABLE Formations_Traduites(
 );
 
 CREATE TABLE Secteurs_Activites (
-	id_SA INTEGER PRIMARY KEY,
+	id_SA SERIAL PRIMARY KEY,
 	SA_fr VARCHAR (50) UNIQUE NOT NULL,
 	SA_en VARCHAR (50) UNIQUE NOT NULL
 );
 
 CREATE TABLE SecteurEntreprise(
-	id_SE INTEGER PRIMARY KEY,
+	id_SE SERIAL PRIMARY KEY,
 	nom_entreprise VARCHAR(50) UNIQUE NOT NULL,
 	secteur_activite INTEGER REFERENCES Secteurs_activites(id_SA)
 );
 
 CREATE TABLE Experiences_Pro(
-	id_exp_pro INTEGER PRIMARY KEY,
+	id_exp_pro SERIAL PRIMARY KEY,
 	nom_entreprise VARCHAR (50) REFERENCES SecteurEntreprise(nom_entreprise),
 	date_debut DATE NOT NULL,
 	date_fin DATE NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE Experiences_Pro(
 );
 
 CREATE TABLE Experiences_Pro_Traduites (
-	id_exp_pro INTEGER REFERENCES Experiences_Pro(id_exp_pro),
+	id_exp_pro SERIAL REFERENCES Experiences_Pro(id_exp_pro),
 	fonction VARCHAR(50),
 	langue LANGUE,
 	PRIMARY KEY (id_exp_pro, fonction, langue)
@@ -65,14 +65,14 @@ CREATE TABLE Experiences_Pro_Traduites (
 /*Package Poste Associations (3 tables)*/
 
 CREATE TABLE Status(
-      id_statut INTEGER PRIMARY KEY,
+      id_statut SERIAL PRIMARY KEY,
       statut_fr VARCHAR(50) NOT NULL,
       statut_en VARCHAR(50) NOT NULL,
       UNIQUE (statut_fr,statut_en)  /*(statut_fr,statut_en) clé candidate*/
 );
 
 CREATE TABLE Postes_Associations(
-      id_asso INTEGER PRIMARY KEY,
+      id_asso SERIAL PRIMARY KEY,
       nom_asso VARCHAR(100) NOT NULL,
       date_debut DATE NOT NULL,
       date_fin DATE NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE Postes_Associations_Traduits(
 /*Package Langues*/
 
 CREATE TABLE Langues(
-      id INTEGER PRIMARY KEY,
+      id SERIAL PRIMARY KEY,
       nom_fr VARCHAR(50) UNIQUE NOT NULL, /*clé candidate*/
       nom_en VARCHAR(50) UNIQUE NOT NULL /*clé candidate*/      
 );
@@ -98,13 +98,13 @@ CREATE TABLE Langues(
 /*Package Candidat, CV et autres classes hors packages*/
 
 CREATE TABLE DatePublication(
-	id_date_pub INTEGER PRIMARY KEY,
+	id_date_pub SERIAL PRIMARY KEY,
 	ISBN  VARCHAR(20) UNIQUE NOT NULL,
 	date DATE
 );
 
 CREATE TABLE Publications(
-	id_pub INTEGER PRIMARY KEY,
+	id_pub SERIAL PRIMARY KEY,
 	titre VARCHAR (100) NOT NULL,
 	id_date_pub INTEGER REFERENCES DatePublication(id_date_pub),
 	contenu TEXT NOT NULL, /*mini-résumé*/
@@ -112,7 +112,7 @@ CREATE TABLE Publications(
 );
 
 CREATE TABLE Individus(
-      id_individu INTEGER PRIMARY KEY,
+      id_individu SERIAL PRIMARY KEY,
       nom VARCHAR(60) NOT NULL,
       prenom VARCHAR(60) NOT NULL,
       mail VARCHAR(100) UNIQUE NOT NULL   /*clé candidate*/
@@ -156,7 +156,7 @@ Proj(Individu, id_individu) IN Proj(Candidats, id_candidat) UNION Proj(Referents
  */
 
 CREATE TABLE CV(
-	id_CV INTEGER,
+	id_CV SERIAL,
       candidat INTEGER REFERENCES Candidats(id_candidat),
       statut VARCHAR(12),
       date_creation DATE NOT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE CV(
 
 CREATE TABLE CV_Traduit (
       id_CV INTEGER REFERENCES CV(id_CV),
-      langue LANGUE,
+      langue LANGUE NOT NULL,
       titre VARCHAR(60) NOT NULL,
       infos_complementaires TEXT,
       PRIMARY KEY (id_CV,langue)
