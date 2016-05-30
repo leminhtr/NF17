@@ -14,7 +14,10 @@ INSERT INTO Domaines_Etudes (id_DE, DE_fr, DE_en) VALUES ('2','Biologie','Biolog
 INSERT INTO Formations (id_formation, date_debut, date_fin, etablissement,pays, ville, domaine_etude) VALUES ('1','2010-06-21','2012-06-21','UTC','France','Compiègne','1');
 INSERT INTO Formations (id_formation, date_debut, date_fin, etablissement, domaine_etude) VALUES ('2','2010-02-10','2012-02-10','UTC','2');
 INSERT INTO Formations (id_formation, date_debut, date_fin, etablissement, domaine_etude) VALUES ('3','2010-06-23','2013-06-21','UTC','2');
-
+UPDATE formations SET ville='Compiègne' where id_formation=3;
+UPDATE formations SET ville='Compiègne' where id_formation=2;
+UPDATE formations SET pays='France' where id_formation=2;
+UPDATE formations SET pays='France' where id_formation=3;
 
 INSERT INTO Formations_Traduites (titre, type, langue, id_formation) VALUES ('Je_comprends pas','bah_rien','EN','3');
 INSERT INTO Formations_Traduites (titre, type, langue, id_formation) VALUES ('Diplôme ingénieur','Master','FR','3');
