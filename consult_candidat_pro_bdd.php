@@ -92,7 +92,7 @@ $query=pg_query($vConn,$sql_query);
             echo"<td><center>$result[2]</center</td>";  //Mail
             echo"<td><center>$result[3]</center</td>";  //Téléphone
             if(!empty($result[5]))
-                echo"<td><center>$result[5]</center</td>";  //Site web (URL) non vide
+                echo"<td><center><a href='$result[5]' target='_blank'>$result[5]</a></center</td>";  //Site web (URL) non vide
             else
                 echo"<td><center><i>Non renseigné</i></center></td>";          //Site web est vide
             echo"</tr>";
