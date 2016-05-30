@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Consulter le parcours d'un candidat</title>
+</head>
+<body>
+
+<div id="contenu">
+    <div id="Menu">
+    </div>
+    <div id="Bienvenue">
+    </div>
+</div>
+
+<nav>
+    <ul>
+        <li><a href="page1_projet.php">Accueil</a></li>
+        </br>
+        <p>Espace Candidats</p>
+        </br>
+        <li><a href="insert.php">Ajouter votre CV</a></li>
+        <li><a href="check.php">Modifier votre CV</a></li>
+        </br>
+        <p>Espace Référents</p>
+        </br>
+        <li><a href="select.html">Consulter les CV</a></li>
+    </ul>
+</nav>
+
+<style>
+    nav{
+        float:left;
+        width:25%;
+        height:100%;
+        border-right:1px dashed #CCC;
+        /*padding:20px;
+        margin-top:40px;*/
+    }
+</style>
+
+<h1>Choisissez le candidat dont vous souhaitez consulter le parcours</h1>
+
+<br>
+<br>
+<br>
+
+<form method="POST" action="consult_parcours_candidat.php">
+    <table>
+        <tr>
+            <th>Nom</th>
+            <td><input type="text" name="nom"></td>
+        </tr>
+        <tr>
+            <th>Prénom</th>
+            <td><input type="text" name="prenom"></td>
+        </tr>
+    </table>
+
+<br>
+<input type="submit" value="Valider">
+</form>
+
+
+</body>
+</html>

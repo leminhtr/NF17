@@ -40,8 +40,13 @@ CREATE TABLE Secteurs_Activites (
 );
 
 CREATE TABLE SecteurEntreprise(
+<<<<<<< HEAD
 	id_SE SERIAL PRIMARY KEY,
 	nom_entreprise VARCHAR(50) UNIQUE NOT NULL,
+=======
+	id_SE INTEGER PRIMARY KEY,
+	nom_entreprise VARCHAR(50) UNIQUE NOT NULL, /*clé candidate*/
+>>>>>>> 02983a1e28bc1ac9e6fb981d34084e1133fc2b63
 	secteur_activite INTEGER REFERENCES Secteurs_activites(id_SA)
 );
 
@@ -156,7 +161,11 @@ Proj(Individu, id_individu) IN Proj(Candidats, id_candidat) UNION Proj(Referents
  */
 
 CREATE TABLE CV(
+<<<<<<< HEAD
 	id_CV SERIAL,
+=======
+	   id_CV INTEGER,
+>>>>>>> 02983a1e28bc1ac9e6fb981d34084e1133fc2b63
       candidat INTEGER REFERENCES Candidats(id_candidat),
       statut VARCHAR(12),
       date_creation DATE NOT NULL,
