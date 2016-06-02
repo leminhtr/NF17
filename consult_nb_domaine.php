@@ -22,9 +22,13 @@
         <li><a href="insert.php">Ajouter votre CV</a></li>
         <li><a href="check.php">Modifier votre CV</a></li>
         </br>
-        <p>Espace Référents</p>
+        <p>Espace Entreprise</p>
         </br>
         <li><a href="select.html">Consulter les CV</a></li>
+        <br>
+        <p>Espace Référents</p>
+        </br>
+        <li><a href="consult_referent.html">Consulter vos candidats</a></li>
     </ul>
 </nav>
 

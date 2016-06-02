@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <title>INSCRIPTION A UN SITE DE CANDIDATURE</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>Consulter les candidats que vous gérez</title>
 </head>
-<body> 
+<body>
+
 <div id="contenu">
     <div id="Menu">
     </div>
@@ -29,23 +31,37 @@
         <li><a href="consult_referent.html">Consulter vos candidats</a></li>
     </ul>
 </nav>
+
 <style>
-nav{
-    float:left;
-    width:25%;
-    height:100%;
-    border-right:1px dashed #CCC;
-    /*padding:20px;
-    margin-top:40px;*/
-}
+    nav{
+        float:left;
+        width:25%;
+        height:100%;
+        border-right:1px dashed #CCC;
+        /*padding:20px;
+        margin-top:40px;*/
+    }
 </style>
-<section>
-	<h1>Bienvenue dans notre site de gestion de CV</h1>
-	<p>
-		Si vous êtes candidat vous allez pouvoir ajouter votre CV, il doit être unique, ou bien gérer votre CV déjà créer. Seulement les administrateurs de ce site on l'accès à toutes les informations.
-	</p>
-</section>
+
+<h1>Espace référent : <br>Authentifier-vous</h1>
+
+<br>
+<br>
+<br>
+
+<form method="POST" action="consult_referent_choix.php">
+    <table>
+        <tr>
+            <th>Email</th>
+            <td><input type="text" name="nom"></td>
+        </tr>
+       
+       <tr>
+            <td><input type="submit" value="Valider"></td>
+       </tr>
+    </table>
+</form>
 
 
-</body> 
+</body>
 </html>
