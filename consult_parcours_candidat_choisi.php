@@ -336,5 +336,5 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
         }
     }
 }
-pg_close($vConn);
+
 ?>

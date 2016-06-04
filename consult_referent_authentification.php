@@ -409,7 +409,7 @@ else {
 
     }
 }
-pg_close($vConn);
+
 ?>
 
 

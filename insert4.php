@@ -1,7 +1,7 @@
 <html>
 <?php
 include 'mise_en_page.php';
-pg_close($vConn);             ?>
+             ?>
   <h1>Etape 2 : donnez vos données principales ainsi que celles de votre CV</h1>
 
 
@@ -66,7 +66,7 @@ pg_close($vConn);             ?>
 
 
 
-pg_close($vConn);
+
 ?>
 
 <hr/>

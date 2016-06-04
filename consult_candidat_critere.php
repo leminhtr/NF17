@@ -76,7 +76,7 @@
             echo"</select>";
             echo"</td>";
 
-            pg_close($vConn);
+
             ?>
         </tr>
 
@@ -122,7 +122,7 @@
             }
             echo"</select>";
             echo"</td>";
-            pg_close($vConn);
+           
             ?>
         </tr>
 

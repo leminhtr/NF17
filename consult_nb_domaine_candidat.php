@@ -81,7 +81,7 @@
             }
 
         echo"</tr>";
-        pg_close($vConn);
-        pg_close($vConn);             ?>
+        
+                     ?>
     </tr>
 </table>

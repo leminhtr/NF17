@@ -397,4 +397,4 @@ else
     echo"<a href=\"consult_parcours_candidat.html\">Retour à la saisie pour la consultation d'un candidat.</a>";
 }
 
-pg_close($vConn);             ?>
+?>
