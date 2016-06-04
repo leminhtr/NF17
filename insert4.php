@@ -1,3 +1,5 @@
+<?php session_start(); ?> //Création d'une session pour pouvoir garder l'id tout le long de l'inscription
+
 <html>
 <?php
 include 'mise_en_page.php';
@@ -64,7 +66,8 @@ include 'mise_en_page.php';
 
 /*IF FAUT VERIFIER SI IL Y A UN DEUXIEME DESCRIPTION LANGUE DE RENTREE!!!!!!!!!*/
 
-
+	$_SESSION['id'] = $vid_CV; //On garde l'email pour la suite de l'inscrption
+	$_SESSION['i'] = 1; //Variable qui pourra itérer le nombre de Compétence
 
 
 ?>
