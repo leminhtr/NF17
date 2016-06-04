@@ -43,48 +43,54 @@
     }
 </style>
 
-<h1>Espace référent : <br>Authentification</h1>
+<h1>Espace référent : Authentification</h1>
 
 <?php
 
-$mail=$_POST['mail'];
+    $mail=$_POST['mail'];
+    $langue=$_POST['langue'];
 
-<?php
-    
+    if(empty($mail))
+    {
+        echo"Erreur de saisie.<br><br>";
+        echo "<a href='consult_referent.html'>Retour à l'espace d'authentification.</a>";
+    }
+
+else {
+
+
     /*Connexion à la BDD*/
     include "connect_projet.php";
     $vConn = fConnect();
 
-    /* Récupération de tous les domaines d'études */
-    $query_sql_mail="SELECT i.nom, i.prenom, i.id_individu
+    /*Recherche référent */
+    $query_sql_mail = "SELECT i.nom, i.prenom, i.id_individu
            FROM individus i
            JOIN referents r ON i.id_individu=r.id_referent
            WHERE i.mail='$mail';";
 
-    $query_mail=pg_query($vConn, $query_sql_mail);
+    $query_mail = pg_query($vConn, $query_sql_mail);
 
-    $is_referent=pg_num_rows($query_mail);
+    $is_referent = pg_num_rows($query_mail);
 
-    if($is_referent==0)
-    {
-        echo"Erreur authentification. Vous n'êtes pas un référent.<br><br>";
-        echo"<a href='consult_referent.html'>Retour à l'espace d'authentification.</a>";
-    }
-
-    else {
+    if ($is_referent == 0) {
+        echo "Erreur authentification. Vous n'êtes pas un référent.<br><br>";
+        echo "<a href='consult_referent.html'>Retour à l'espace d'authentification.</a>";
+    } else {
         while ($row_mail = pg_fetch_array($query_mail)) {       //Récupération détail identité référent
-            echo "<b>Bienvenue $row_mail[0] $row_mail[1]</b>.";
+            echo "<h1>Bienvenue $row_mail[1] $row_mail[0]</h1>.";
             $id_referent = $row_mail[2];
         }
         echo "<br>";
 
-        //Récupérer ID, nom, prénom, infos,... des candidats.
+        //Récupérer ID, nom, prénom, infos,... des candidats du référent
         $query_sql_referent_candidats = "SELECT i.id_individu, i.nom, i.prenom 
                                           FROM individus i
                                           JOIN candidats c ON i.id_individu=c.id_candidat
                                           JOIN posseder_referent pr ON c.id_candidat=pr.id_candidat
                                           JOIN referents r ON pr.id_referent=r.id_referent
-                                          WHERE pr.id_referent='$id_referent';";
+                                          WHERE pr.id_referent='$id_referent'
+                                          ORDER BY (i.nom)";
 
         $query_referent_candidats = pg_query($vConn, $query_sql_referent_candidats);
 
@@ -99,7 +105,7 @@ $mail=$_POST['mail'];
             $array_id_candidat[] = $row_individu['id_individu'];
         }
 
-        $row_individu = pg_result_seek($query_individu, 0);   //reset fetch query
+        $row_individu = pg_result_seek($query_referent_candidats, 0);   //reset fetch query
 
         /*=========3 cas : I) aucun trouvé, II) + de 1 trouvé, III) 1 exactement trouvé===========*/
 
@@ -125,20 +131,20 @@ $mail=$_POST['mail'];
 
             echo "<form method='post' action='consult_referent_choix.php'>";
 
-            while($row_individu=pg_fetch_array($query_referent_candidats))
-            {
+            while ($row_individu = pg_fetch_array($query_referent_candidats)) {
                 echo "<tr>";
-                echo "<td>$row_individu[0]</td>";
-                echo "<td>$row_individu[1]</td>";
-                echo "<td>$row_individu[2]</td>";
+                echo "<td>$row_individu[0]</td>";   //id
+                echo "<td>$row_individu[1]</td>";   //nom
+                echo "<td>$row_individu[2]</td>";   //prenom
                 echo "<td><input type='radio' value='" . $row_individu[0] . "' name='id_candidat'></td>";
-                echo"</tr>";
+                echo "</tr>";
 
             }
 
             echo "</table>";
 
             echo "<input type='hidden' value='" . $id_referent . "' name='nom'>";
+            echo "<input type='hidden' value='" . $langue . "' name='langue'>";
 
             echo "<br>";
             echo "<input type='submit' value='Consulter ce candidat'>";
@@ -150,25 +156,41 @@ $mail=$_POST['mail'];
         if ($nb_candidat_found == 1) {
 
 
-            $query_sql_individu="SELECT ic.nom, ic.prenom, ic.mail, ic.telephone, ic.telephone_type, ic.url_web, ic.type_web, cv.candidat /*toutes les infos d'un individu*/
+            $query_sql_individu = "SELECT ic.nom, ic.prenom, ic.mail, ic.telephone, ic.telephone_type, ic.url_web, ic.type_web, cv.candidat /*toutes les infos d'un individu*/
                                  FROM individus_candidats ic
                                  JOIN candidats c ON c.id_candidat=ic.id_individu
                                  JOIN CV ON c.id_candidat=CV.candidat
                                  WHERE ic.id_individu='$array_id_candidat[0]';";
 
-            $query_individu=pg_query($vConn,$query_sql_individu);
+            $query_individu = pg_query($vConn, $query_sql_individu);
 
-            while ($row_individu=pg_fetch_array($query_individu))
-            {
-                $nom=$row_individu[0];
-                $prenom=$row_individu[1];
+            while ($row_individu = pg_fetch_array($query_individu)) {
+                $nom = $row_individu[0];
+                $prenom = $row_individu[1];
             }
 
             echo "<center><h2>$nom $prenom </h2></center>";
 
-            echo "<h3>Profil personnel</h3>";    //coordonnée si activé
+            //Rcupéraion tire et langue CV
+            $query_sql_cv="SELECT cvt.langue, cvt.titre, cvt.infos_complementaires
+                       FROM cv_traduit cvt
+                       JOIN CV ON cvt.id_cv = cv.id_cv
+                       WHERE cv.candidat='$id_candidat'
+                       AND cvt.langue='$langue';";
 
-            $row_individu=pg_result_seek($query_individu,0);    //reset fetch query
+            $query_cv=pg_query($vConn,$query_sql_cv);
+
+            $nb_cv_found=pg_num_rows($query_cv);    //nombre de CV trouvé
+
+            while ($row_cv=pg_fetch_array($query_cv))
+            {
+                echo"<h2>$row_cv[1] ($row_cv[0])</h2>";
+            }
+            $row_cv=pg_result_seek($query_cv,0);    //reset fetch query
+            
+            echo "<h3>Profil personnel</h3>";
+
+            $row_individu = pg_result_seek($query_individu, 0);    //reset fetch query
 
             while ($row_individu = pg_fetch_array($query_individu)) {
 
@@ -386,6 +408,8 @@ $mail=$_POST['mail'];
         }
 
     }
+}
+pg_close($vConn);
 ?>
 
 

@@ -69,7 +69,8 @@
 		       echo "<td>$result[date_maj]</td>";
                        echo "</tr>";
 		   }  
-		  ?> 
+		  pg_close($vConn);
+		   ?>
         </table>
       <hr/>
       <p> Vous voulez modifier ? Si oui, cliquer le link </p>

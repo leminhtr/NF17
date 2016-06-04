@@ -118,5 +118,5 @@ $query=pg_query($vConn,$sql_query);
             echo"</tr>";
         }
     }
-        ?>
+        pg_close($vConn);             ?>
 </table>

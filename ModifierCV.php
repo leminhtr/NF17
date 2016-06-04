@@ -86,7 +86,7 @@
                    
                 echo (" Parfait, vous avzz deja faire la modification !!!");
 
-             ?> 
+             pg_close($vConn);             ?> 
 
         </table>
       <hr/>

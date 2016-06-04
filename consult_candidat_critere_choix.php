@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Consulter le parcours d'un candidat</title>
+    <title>Rechercher les candidats qui correspondent à vos critères</title>
 </head>
 <body>
 
@@ -43,44 +43,8 @@
     }
 </style>
 
-<h1>Choisissez le candidat dont vous souhaitez consulter le parcours</h1>
+<h1>Rechercher les candidats qui correspondent à vos critères</h1>
 
 <br>
 <br>
 <br>
-
-<form method="POST" action="consult_parcours_candidat.php">
-    <table>
-        <tr>
-            <th>Nom</th>
-            <td><input type="text" name="nom"></td>
-        </tr>
-        <tr>
-            <th>Prénom</th>
-            <td><input type="text" name="prenom"></td>
-        </tr>
-        </tr>
-        <tr>
-            <th rowspan="2">Langue</th>
-            <td><input type="radio" value='FR' name="langue" checked>Français</td>
-        </tr>
-        <tr>
-            <td><input type="radio" value='EN' name="langue">English</td>
-        </tr>
-
-
-
-<tr></tr>
-<tr><td><input type="submit" value="Valider"></td></tr>
-
-    </table>
-</form>
-
-
-</body>
-</html>
-
-<select multiple name='domaine'>
-    <option value=''></option>
-
-</select>

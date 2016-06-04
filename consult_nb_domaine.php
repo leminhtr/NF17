@@ -74,7 +74,7 @@
                 echo"</select>";
 
                 pg_close($vConn);
-                ?>
+                pg_close($vConn);             ?>
             </td>
         </tr>
     </table>

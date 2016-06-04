@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Consulter le parcours d'un candidat</title>
+    <title>Consulter le parcours d'un candidat que vous gérez</title>
 </head>
 <body>
 
@@ -43,45 +43,54 @@
     }
 </style>
 
-<h1>Consulter le parcours d'un candidat</h1>
 
-<br>
-<br>
 
 <?php
 
 //Récupération des variables
-$nom=$_POST['nom'];
-$prenom=$_POST['prenom'];
-$langue=$_POST['langue'];
 $id_candidat=$_POST['id_candidat'];
+$langue=$_POST['langue'];
 
-if(!empty($nom) and !empty($prenom) and !empty($langue)) {
+if(!empty($id_candidat)) {
     $nom = ucfirst(strtolower($nom));  //aBcD -> Abcd
     $prenom = ucfirst(strtolower($prenom));
 
+    echo"<h1>Consulter le parcours d'un candidat que vous gérez</h1>";
+    echo"<br><br>";
+    
     /*Connexion à la BDD*/
     include "connect_projet.php";
     $vConn = fConnect();
 
 
-    echo"Vous avez choisi de consulter le candidat $nom $prenom ID n°$id_candidat.<br><br>";
-
 //RECHERCHE EXISTENCE ET PROFIL CANDIDAT.
     $query_sql_individu="SELECT ic.nom, ic.prenom, ic.mail, ic.telephone, ic.telephone_type, ic.url_web, ic.type_web, statut_cv.statut, statut_cv.candidat /*toutes les infos d'un individu et son statut*/
     FROM individus_candidats ic,
-    (SELECT CV.candidat, CV.statut                    /*sous table : Que les CV qui existent, sans le statut desactive ou confidentiel*/
+    (SELECT CV.candidat, CV.statut                    /*sous table : Que les CV qui existent, sans le statut desactive*/
      FROM CV
      JOIN candidats c ON cv.candidat = c.id_candidat  /*jointure : tous les CV appartenant aux candidats*/
-     WHERE CV.statut<>'desactive'
-           OR CV.statut<>'confidentiel')              /*ce CV n'étant pas desactive ou confidentiel*/
+     WHERE CV.statut<>'desactive')                                 /*ce CV n'étant pas desactive*/
      AS statut_cv                                     /*nom sous table*/
-WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'ont pas un cv à statut desactive ou confidentiel*/
+WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'ont pas un cv à statut desactive*/
     AND ic.id_individu='$id_candidat';";
 
     $query_individu=pg_query($vConn,$query_sql_individu);
 
+
+    while($row_individu=pg_fetch_array($query_individu))
+    {
+        $nom=$row_individu[0];
+        $prenom=$row_individu[1];
+    }
+    $nom=ucfirst(strtolower($nom));
+    $prenom=ucfirst(strtolower($prenom));
+
+    $row_individu = pg_result_seek($query_individu, 0);    //reset fetch query
+
+    echo "Vous avez choisi de consulter le candidat $nom $prenom ID n°$id_candidat.<br><br>";
+
     echo"<center><h2>$nom $prenom </h2></center>";
+
 
     $query_sql_cv="SELECT cvt.langue, cvt.titre, cvt.infos_complementaires
                        FROM cv_traduit cvt
@@ -98,8 +107,7 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
         echo"<h2>$row_cv[1] ($row_cv[0])</h2>";
     }
     $row_cv=pg_result_seek($query_cv,0);
-
-
+    
     echo"<h3>Profil personnel</h3>";    //coordonnée si activé
 
     while($row_individu=pg_fetch_array($query_individu))
@@ -323,11 +331,12 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
                 echo"<td><center>$row_langue[1]</center></td>";  //Niveau
                 echo"</tr>";
             }
+
         }
 
         if($nb_cv_found!=0)
         {
-            echo"<h3>Informations complémentaires</h3><br>";
+            echo"<h3>Informations complémentaires</h3>";
 
             while ($row_cv=pg_fetch_array($query_cv))
             {
@@ -336,5 +345,5 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
         }
     }
 }
-pg_close($vConn);
+pg_close($vConn)
 ?>

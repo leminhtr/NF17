@@ -84,19 +84,21 @@ INSERT INTO Individus (nom, prenom, mail) VALUES ('Le','Minh Tri','minh-tri.le@e
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Candidat1','winner','zoulou@etu.utc.fr');
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Candidat2','winner','candidat2@etu.utc.fr');
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Candidat3','winner','candidat3@etu.utc.fr');
+INSERT INTO Individus (nom, prenom, mail) VALUES ('Lussier','Benjamin','b.lussier@utc.fr');
 
 
 INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type, url_web) VALUES (5, 'zoulou','zoulou', '0654852635','portable','https://google.fr');
 UPDATE Candidats SET url_web='https://google.fr' where id_candidat=5;
 
 
-INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES (6, 'minhtrile','minhtrile', '0654852637','portable');
-INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES (7, 'camille','camille', '0654852638','portable');
+INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES (4, 'minhtrile','minhtrile', '0654852637','portable');
+INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES (1, 'camille','camille', '0654852638','portable');
 
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES (1,'eleveNF17','Benjamin Lussier');
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES (2,'eleveNF17','Benjamin Lussier');
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES (3,'eleveNF17','Benjamin Lussier');
 INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES (4,'eleveNF17','Benjamin Lussier');
+INSERT INTO Referents (id_referent, situation_pro, employeur) VALUES (9,'Professeur','UTC');
 
 
 
@@ -134,6 +136,10 @@ INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES (5,2,'B
 INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES (5,3,'B1');
 
 INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (5,1);
+INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (5,9);
+INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (8,9);
+INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (6,9);
+INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (7,9);
 
 
 

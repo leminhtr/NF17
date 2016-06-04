@@ -43,20 +43,30 @@
     }
 </style>
 
-<h1>Espace référent : <br>Authentifier-vous</h1>
+<h1>Espace référent : Authentifiez-vous</h1>
 
 <br>
 <br>
 <br>
 
-<form method="POST" action="consult_referent_choix.php">
+<form method="POST" action="consult_referent_authentification.php">
     <table>
         <tr>
             <th>Email</th>
-            <td><input type="text" name="nom"></td>
+            <td><input type="text" name="mail"></td>
+        </tr>
+        <tr>
+            <th rowspan="2">Langue</th>
+            <td><input type="radio" value='FR' name="langue" checked>Français</td>
+        </tr>
+        <tr>
+            <td><input type="radio" value='EN' name="langue">English</td>
+        </tr>
         </tr>
        
        <tr>
+       </tr>
+        <tr>
             <td><input type="submit" value="Valider"></td>
        </tr>
     </table>
