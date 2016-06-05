@@ -5,11 +5,25 @@ include 'mise_en_page.php';
 <h1>Etape 3 de la création de votre CV : Compétence</h1>
   <p>Veuillez remplir les champs ci-dessous</p>
   <form method= "post" action="insert6.php">
-	<label>Nombre de compétence<label> : <input type="integer" name="nb" />
+	</br>
+	<?php 
+	echo 'Compétence n°';
+	echo $_SESSION['i'];
+	$vI = $_SESSION['i'];
+	$_SESSION['i'] = $vI+1;
+	?>
+	<p>
+	</br>
+	<label>Nom</label> : <input type="text" name="nom" />
+	</br>
+	<label>Langue</label> : <select name="text" id="langue">
+		<option value="FR">Français</option>
+		<option value="EN">English</option></select>
+	</br>
+	</br>
 	<input type="submit" value="valider" />
-    	</p>
+	</p>
   </form>
-
 <hr/>
 
 </body>
