@@ -337,4 +337,11 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
     }
 }
 
+else
+{
+    echo"<br><br>Erreur de saisie.";
+    echo"<br><br><a href='consult_parcours_candidat.html'>Chercher un candidat par son nom.</a>";
+    echo"<br><br><a href='consult_candidat_critere.php'>Chercher un candidat selon plusieurs critères.</a>";
+}
+
 ?>

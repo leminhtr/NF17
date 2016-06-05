@@ -96,7 +96,7 @@ else {
 
         $nb_candidat_found = pg_num_rows($query_referent_candidats);    //nombre d'individu trouvé
 
-        echo "Nous avons trouvé $nb_candidat_found candidat(s).<br><br>";
+        echo "Vous gérez $nb_candidat_found candidat(s).<br><br>";
 
         $array_id_candidat = array();
 
@@ -112,7 +112,6 @@ else {
 
         //I) Cas aucun trouvé : Retour à la recherche/accueil
         if ($nb_candidat_found == 0) {
-            echo "Vous n'avez pas de candidat à gérer.<br><br>";
             echo "<a href='page1_projet.php'> Retour à l'acceuil</a>";
         }
 
