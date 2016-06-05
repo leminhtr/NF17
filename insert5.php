@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <html>
 <?php
 include 'mise_en_page.php';

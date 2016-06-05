@@ -68,6 +68,7 @@ include 'mise_en_page.php';
 
 	$_SESSION['id'] = $vid_CV; //On garde l'email pour la suite de l'inscrption
 	$_SESSION['i'] = 1; //Variable qui pourra itérer le nombre de Compétence
+	$_SESSION['j'] = 1; //Variable qui pourra itérer le nombre de Formation
 
 
 ?>

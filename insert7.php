@@ -1,3 +1,4 @@
+<?php session_start();?>
 <html>
 <?php
 include 'mise_en_page.php';
@@ -20,7 +21,7 @@ include 'mise_en_page.php';
 	
 	//-> récuperer l'id du candidat !!!
 
-	$vID = $_SESSION['id']
+	$vID = $_SESSION['id'];
 	
 	$vSQL = "SELECT id, nom, langue FROM Posseder_Competence WHERE nom = $vCompt AND langue = $vLang";
 	$vQuery = pg_query($vCon,$vSQL);
@@ -30,28 +31,14 @@ include 'mise_en_page.php';
 	}
 
 
+	echo "La formation que vous voulez insérer est elle traduite ?";
+	echo '<p><a href="insert8.php">Oui</a></p>';
+	echo '<p><a href="insert9.php">Non</a></p>';
+
 ?>
-  <form method= "post" action="insert8.php">
-	<label>Domaine d'étude :<label>
-	</br>
-	<label>Nom français<label> : <input type="text" name="DE_FR" />
-	</br>
-	<label>Nom anglais<label> : <input type="text" name="DE_EN" />
-	</br>
-	<label>Date de début<label> : <input type="date" name="date_debut" />
-	</br>
-	<label>Date de fin<label> : <input type="date" name="date_fin" />
-	</br>
-	<label>Entablissement<label> : <input type="text" name="Etab" />
-	</br>
-	<label>Pays<label> : <input type="text" name="pays" />
-	</br>
-	<label>Ville<label> : <input type="text" name="ville" />
-	</br>
-	<input type="submit" value="Ajouter une autre formation" />
-	<input type="submit" value="Terminer"/>
-    	</p>
-  </form>
+
+
+?>
 
 <hr/>
 </body>
