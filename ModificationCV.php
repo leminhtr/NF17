@@ -14,24 +14,20 @@
 	</style>
   </head>
   <body>
-<nav>
-    <ul>
-        <li><a href="page1_projet.php">Accueil</a></li>
-        </br>
-        <p>Espace Candidats</p>
-        </br>
-        <li><a href="insert.php">Ajouter votre CV</a></li>
-        <li><a href="check.php">Modifier votre CV</a></li>
-        </br>
-        <p>Espace Entreprise</p>
-        </br>
-        <li><a href="select.html">Consulter les CV</a></li>
-        <br>
-        <p>Espace Référents</p>
-        </br>
-        <li><a href="consult_referent.html">Consulter vos candidats</a></li>
-    </ul>
-</nav>
+	<nav>
+	    <ul>
+		<li><a href="page1_projet.php">Accueil</a></li>
+		</br>
+		<p>Espace Candidats</p>
+		</br>
+		<li><a href="insert.php">Ajouter votre CV</a></li>
+		<li><a href="check.php">Modifier votre CV</a></li>
+		</br>
+		<p>Espace Référents</p>
+		</br>
+		<li><a href="select.html">Consulter les CV</a></li>
+	    </ul>
+	</nav>
 	
         <h2>Donner les informations ce que vous voulez modifier !</h2>
   	<form id="myform" method="POST" action="ModifierCV.php">

@@ -161,7 +161,7 @@ CREATE TABLE CV(
       statut VARCHAR(12),
       date_creation DATE NOT NULL,
       date_maj DATE NOT NULL,
-      CHECK (statut IN ('desactive','active','confidentiel'))
+      CHECK (statut IN ('desactive','active','confidentiel')),
 );
 /*modification de la table car une clé étrangère ne peut pas être clé primaire à elle seule*/
 
