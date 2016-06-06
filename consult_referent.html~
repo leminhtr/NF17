@@ -38,7 +38,8 @@
         width:25%;
         height:100%;
         border-right:1px dashed #CCC;
-
+        /*padding:20px;
+        margin-top:40px;*/
     }
 </style>
 

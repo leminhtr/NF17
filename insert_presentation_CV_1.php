@@ -2,12 +2,12 @@
 
 <html>
 <?php
-include 'mise_en_page.php';
+include 'mise_en_page.html';
 
 ?>
   <h1>Etape 2 de la création de votre CV : informations principales de votre CV</h1>
   <h3>Veuillez remplir les champs ci-dessous en indiquant si c'est en anglais ou en français</h3></br></br>
-  <form method= "post" action="insert3_4.php">
+  <form method= "post" action="insert_presentation_CV_2.php">
 
 	
 

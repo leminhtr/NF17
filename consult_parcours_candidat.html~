@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Consulter les candidats que vous gérez</title>
+    <title>Consulter le parcours d'un candidat</title>
 </head>
 <body>
 
@@ -38,21 +38,27 @@
         width:25%;
         height:100%;
         border-right:1px dashed #CCC;
-
+        /*padding:20px;
+        margin-top:40px;*/
     }
 </style>
 
-<h1>Espace référent : Authentifiez-vous</h1>
+<h1>Choisissez le candidat dont vous souhaitez consulter le parcours</h1>
 
 <br>
 <br>
 <br>
 
-<form method="POST" action="consult_referent_authentification.php">
+<form method="POST" action="consult_parcours_candidat.php">
     <table>
         <tr>
-            <th>Email</th>
-            <td><input type="text" name="mail"></td>
+            <th>Nom</th>
+            <td><input type="text" name="nom"></td>
+        </tr>
+        <tr>
+            <th>Prénom</th>
+            <td><input type="text" name="prenom"></td>
+        </tr>
         </tr>
         <tr>
             <th rowspan="2">Langue</th>
@@ -61,13 +67,12 @@
         <tr>
             <td><input type="radio" value='EN' name="langue">English</td>
         </tr>
-        </tr>
-       
-       <tr>
-       </tr>
-        <tr>
-            <td><input type="submit" value="Valider"></td>
-       </tr>
+
+
+
+<tr></tr>
+<tr><td><input type="submit" value="Valider"></td></tr>
+
     </table>
 </form>
 

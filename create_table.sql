@@ -212,7 +212,7 @@ CREATE TABLE Parler_Langue(
 	id_candidat INTEGER REFERENCES Candidats(id_candidat),
 	id_langue INTEGER,
 	niveau_langue CHAR(2),
-	CHECK (niveau_langue IN ('A1','A2','B1','B2','C1','C2')),
+	CHECK (niveau_langue IN ('A0','A1','A2','B1','B2','C1','C2')),
 	FOREIGN KEY (id_langue) REFERENCES Langues(id),
 	PRIMARY KEY( id_candidat,id_langue)
 );

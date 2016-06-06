@@ -60,26 +60,11 @@ include 'mise_en_page.html';
 	
 	pg_query($vConn, "COMMIT");
 
-?>
-	<table border="1">
-	<tr><th>cv traduit</th><th>langue</th><th>titre</th><th>info</th></tr>
-<?php
-	$vSql2 ="SELECT * FROM CV_traduit;";
-	$vQuery=pg_query($vConn, $vSql2);
-	while ($vResult2 = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
-		echo "<tr>";
-
-		echo "<td>$vResult2[id_cv]</td>";
-		echo "<td>$vResult2[candidat]</td>";
-		echo "<td>$vResult2[statut]</td>";
-	
-		echo "</tr>";}
-
 
 	if ($vQuery1) { 
 		pg_query($vConn, "COMMIT");
 		echo "Votre CV a été crée";
-		echo '<p><a href="insert3_5.php">Continuer</a></p>';}
+		echo '<p><a href="insert_langue_1.php">Continuer</a></p>';}
 
 
 	

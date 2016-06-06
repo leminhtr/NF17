@@ -46,13 +46,9 @@ include 'mise_en_page.html';
 	if ($vQuery and $vQuery3) { 
 		$vQuery=pg_query($vConn, "COMMIT");
 		echo "Vos première données ont été bien enregistrée";
-		echo '<p><a href="insert3_3.php">Continuer</a></p>';}
-
-
-
+		echo '<p><a href="insert_presentation_CV_1.php">Continuer</a></p>';}
 
 ?>
-
 
 
 <hr/>
