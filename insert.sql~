@@ -139,7 +139,6 @@ INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES (5,3,'B
 INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (5,1);
 INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (5,8);
 INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (6,8);
-INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (6,8);
 INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES (7,8);
 
 
