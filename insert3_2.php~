@@ -46,14 +46,10 @@ include 'mise_en_page.php';
 	if ($vQuery and $vQuery3) { 
 		$vQuery=pg_query($vConn, "COMMIT");
 		echo "Vos première données ont été bien enregistrée";
-		echo '<p><a href="insert4.php">Continuer</a></p>';}
+		echo '<p><a href="insert3_3.php">Continuer</a></p>';}
 
 
 
-/*
-<form method="POST" action="insert4_2.php">
-	<input type="hidden" name="id_individu" value="<?php echo '$vid_individu' ?>"> </input>
-</form>*/
 
 ?>
 

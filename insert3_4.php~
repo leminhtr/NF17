@@ -2,7 +2,7 @@
 
 <html>
 <?php
-include 'mise_en_page.php';
+include 'mise_en_page.html';
 ?>
   <h1>Etape 2 de la création de votre CV : informations principales de votre CV</h1>
 
@@ -20,7 +20,7 @@ include 'mise_en_page.php';
 	$vtitre2=$_POST['titre2'];
 	$vinfo2=$_POST['infos_complementaires2'];
 
-	echo " affichage de ce putain d'identifiant : $vid_individu";
+
 
 
 	pg_query($vConn, "BEGIN TRANSACTION");
@@ -29,22 +29,47 @@ include 'mise_en_page.php';
 	$vQuery=pg_query($vConn, $vSql);
 	
 
-	$vSql = "SELECT id_CV FROM CV WHERE candidat = '$vid_individu'";
+	$vSql = "SELECT id_cv FROM CV WHERE candidat = '$vid_individu'";
 	$vQuery1=pg_query($vConn, $vSql);
 	$vResult = pg_fetch_array($vQuery1,null, PGSQL_ASSOC);
-	$vid_CV = $vResult[id_CV];
-	$_SESSION['id_CV'] = $vid_CV;
-	echo " affichage de ce putain d'identifiant : $vid_CV";
+	$vid_CV = $vResult[id_cv];
+
 ?>
 	<table border="1">
 	<tr><th>Id CV</th><th>candidat</th><th>statut</th></tr>
 <?php
-	$vSql2 ="SELECT id_CV, candidat, statut FROM CV;";
+	$vSql2 ="SELECT id_cv, candidat, statut FROM CV;";
 	$vQuery=pg_query($vConn, $vSql2);
-	while ($vResult2 = pg_fetch_array($vQuery, null, PGSQL_ASSOC)) {
+	while ($vResult2 = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
 		echo "<tr>";
 
-		echo "<td>$vResult2[id_CV]</td>";
+		echo "<td>$vResult2[id_cv]</td>";
+		echo "<td>$vResult2[candidat]</td>";
+		echo "<td>$vResult2[statut]</td>";
+	
+		echo "</tr>";}
+	
+
+
+
+	$vSql = "INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES ('$vid_CV', '$vlangue1', '$vtitre1', '$vinfo1')";
+	$vQuery=pg_query($vConn, $vSql);
+
+	$vSql = "INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES ('$vid_CV', '$vlangue2', '$vtitre2', '$vinfo2')";
+	$vQuery=pg_query($vConn, $vSql);
+	
+	pg_query($vConn, "COMMIT");
+
+?>
+	<table border="1">
+	<tr><th>cv traduit</th><th>langue</th><th>titre</th><th>info</th></tr>
+<?php
+	$vSql2 ="SELECT * FROM CV_traduit;";
+	$vQuery=pg_query($vConn, $vSql2);
+	while ($vResult2 = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
+		echo "<tr>";
+
+		echo "<td>$vResult2[id_cv]</td>";
 		echo "<td>$vResult2[candidat]</td>";
 		echo "<td>$vResult2[statut]</td>";
 	
@@ -56,11 +81,6 @@ include 'mise_en_page.php';
 		echo "Votre CV a été crée";
 		echo '<p><a href="insert3_5.php">Continuer</a></p>';}
 
-
-	
-
-	
-	
 
 	
 /*IF FAUT VERIFIER SI IL Y A UN DEUXIEME DESCRIPTION LANGUE DE RENTREE!!!!!!!!!*/

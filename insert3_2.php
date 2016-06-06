@@ -2,7 +2,7 @@
 <html>
  
 <?php
-include 'mise_en_page.php';
+include 'mise_en_page.html';
 ?>
   <h1>Etape 1 de la création de votre CV : informations personnels</h1>
 

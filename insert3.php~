@@ -13,7 +13,7 @@ include 'mise_en_page.php';
 	</br></br>
 	<label>Votre mot de passe</label> : <input type="text" name="motdepass" required/>
 	</br></br>
-	<label>Numero de telephone</label> : <input type="int" name="tel" required/>
+	<label>Numero de telephone</label> : <input type="text" name="tel" required/>
 	</br></br>
 	<label>Type du numero</label> : 
 	<select type="text" name="typ_num" id="typ_num">
