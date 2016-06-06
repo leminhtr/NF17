@@ -2,7 +2,7 @@
 
 <html>
 <?php
-include 'mise_en_page.php';
+include 'mise_en_page.html';
 ?>
 <h1>Etape 3 de la création de votre CV : Compétence</h1>
   <p>Veuillez remplir les champs ci-dessous</p>
@@ -16,7 +16,7 @@ include 'mise_en_page.php';
 	?>
 	<p>
 	</br>
-	<label>Nom</label> : <input type="text" name="nom" />
+	<label>Nom</label> : <input type="text" name="nom" require/>
 	</br>
 	<label>Langue</label> : <select name="text" id="langue">
 		<option value="FR">Français</option>

@@ -1,7 +1,7 @@
 <?php session_start();?>
 <html>
 <?php
-include 'mise_en_page.php';
+include 'mise_en_page.html';
 ?>
 <h1>Etape 4 de la création de votre CV : Formation</h1>
   <p>Veuillez remplir les champs ci-dessous</p>
@@ -16,16 +16,16 @@ include 'mise_en_page.php';
 	</br>
 	<label>Domaine d'étude</label>
 	</br>
-	<label>Nom français</label> : <input type="text" name="DE_fr" />
+	<label>Nom français</label> : <input type="text" name="DE_fr" require/>
 	</br>
-	<label>Nom anglais</label> : <input type="text" name="DE_en" />
+	<label>Nom anglais</label> : <input type="text" name="DE_en" require/>
 	</br>
 	</br>
 	<label>Formation dans la langue d'origine<label>
 	</br>
-	<label>Titre</label> : <input type="text" name="titre1" />
+	<label>Titre</label> : <input type="text" name="titre1" require/>
 	</br>
-	<label>Type</label> : <input type="text" name="type1" />
+	<label>Type</label> : <input type="text" name="type1" require/>
 	</br>
 	<label>Langue</label> : <select name="text" id="langue1">
 		<option value="FR">Français</option>
@@ -33,11 +33,11 @@ include 'mise_en_page.php';
 
 	</br>
 	</br>
-	<label>Date de début</label> : <input type="date" name="date_debut" />
+	<label>Date de début</label> : <input type="date" name="date_debut" require/>
 	</br>
-	<label>Date de fin</label> : <input type="date" name="date_fin" />
+	<label>Date de fin</label> : <input type="date" name="date_fin" require/>
 	</br>
-	<label>Etablissement</label> : <input type="text" name="etablissement" />
+	<label>Etablissement</label> : <input type="text" name="etablissement" require/>
 	</br>
 	<label>Pays</label> : <input type="text" name="pays" />
 	</br>

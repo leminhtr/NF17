@@ -1,7 +1,7 @@
 <?php session_start();?>
 <html>
 <?php
-include 'mise_en_page.php';
+include 'mise_en_page.html';
 ?>
 <h1>Etape 4 de la création de votre CV : Formation</h1>
   <p>Veuillez répondre à la question pour continuez</p>
@@ -14,7 +14,7 @@ include 'mise_en_page.php';
 
 	$vSQL = "SELECT * FROM Domaine_etude WHERE DE_fr = $DE_fr AND DE_en = $vDE_en";
 	$vQuery = pg_query($vCon,$vSQL);
-	if(pg_fetch_query($vQuery) == NULL){
+	if(pg_fetch_query($vQuery, NULL, PGSQL_ASSOC) == NULL){
 		$vSQL = "INSERT INTO Domaines_etude(DE_fr,DE_en) VALUES ($vDE_fr,$vDE_en)";
 		pg_query($vCon,$vSQL);
 	}
@@ -31,7 +31,7 @@ include 'mise_en_page.php';
 
 	$vSQL = "SELECT * FROM Formation WHERE date_debut = $vdate_d AND date_fin = $vdate_f AND etablissement = $vEtab"
 	$vQuery = pg_query($vCon,$vSQL);
-	if(pg_fetch_query($vQuery) == NULL){
+	if(pg_fetch_query($vQuery, NULL, PGSQL_ASSOC) == NULL){
 		$vSQL = "INSERT INTO Formation(date_debut, date_fin, etablissement, pays, ville, domaine_etude) VALUES ($vdate_d, $vdate_f, $vEtab, $vPays, $vVille, $Id_DE)";
 		pg_query($vCon,$vSQL);
 	}
@@ -47,7 +47,7 @@ include 'mise_en_page.php';
 	$vlangue1 = $_POST['langue1'];
 	$vSQL = "SELECT * FROM Formation_traduite WHERE titre = $vtitre1 AND type = $vtype1 AND langue = $vlangue1";
 	$vQuery = pg_query($vCon,$vSQL);
-	if(pg_fetch_query($vQuery) == NULL){
+	if(pg_fetch_query($vQuery, NULL, PGSQL_ASSOC) == NULL){
 		$vSQL = "INSERT INTO Formation_traduite(titre,type,langue,id_formation) VALUES ($vtitre1,$vtype1,$vlangue1,$vId_formation)";
 		pg_query($vCon,$vSQL);
 	}

@@ -80,7 +80,7 @@ include 'mise_en_page.html';
 	if ($vQuery1) { 
 		pg_query($vConn, "COMMIT");
 		echo "Votre CV a été crée";
-		echo '<p><a href="insert3_5.php">Continuer</a></p>';}
+		echo '<p><a href="insert5.php">Continuer</a></p>';}
 
 
 	

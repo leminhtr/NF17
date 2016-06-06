@@ -1,7 +1,7 @@
 <?php session_start();?>
 <html>
 <?php
-include 'mise_en_page.php';
+include 'mise_en_page.html';
 ?>
 <h1>Etape 3 de la création de votre CV : Compétence</h1>
 <?php
@@ -12,7 +12,7 @@ include 'mise_en_page.php';
 
 	$vSQL = "SELECT nom, langue FROM Competences WHERE nom = $vCompt AND langue = $vLang";
 	$vQuery = pg_query($vCon,$vSQL);
-	if(pg_fetch_query($vQuery) == NULL){
+	if(pg_fetch_query($vQuery, NULL, PGSQL_ASSOC) == NULL){
 		$vSQL = "INSERT INTO Competences(nom,langue) VALUES ($vCompt,$vLang)";
 		pg_query($vCon,$vSQL);
 	}
@@ -24,7 +24,7 @@ include 'mise_en_page.php';
 	
 	$vSQL = "SELECT id, nom, langue FROM Posseder_Competence WHERE nom = $vCompt AND langue = $vLang";
 	$vQuery = pg_query($vCon,$vSQL);
-	if(pg_fetch_query($vQuery) == NULL){
+	if(pg_fetch_query($vQuery, NULL, PGSQL_ASSOC) == NULL){
 		$vSQL = "INSERT INTO Posseder_Competence(id_candidat,nom,langue) VALUES ($vID,$vCompt,$vLang)";
 		pg_query($vCon,$vSQL);
 	}
