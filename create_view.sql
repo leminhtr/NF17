@@ -6,7 +6,7 @@ CREATE OR REPLACE VIEW individus_candidats AS
 ;
 
 CREATE OR REPLACE VIEW candidats_domaines AS
-  SELECT c.id_candidat, de.de_fr, de.de_en, f.domaine_etude
+  SELECT DISTINCT c.id_candidat, de.de_fr, de.de_en, f.domaine_etude
   FROM domaines_etudes de
   JOIN formations f ON de.id_de = f.domaine_etude
   JOIN suivre_formation sf ON f.id_formation = sf.id_formation
