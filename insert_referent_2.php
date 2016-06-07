@@ -40,7 +40,7 @@ include 'mise_en_page.html';
 	$_SESSION['i'] = 1; //Variable qui pourra itérer le nombre de Compétence dans les prochaines pages
 	$_SESSION['j'] = 1; //Variable qui pourra itérer le nombre de Formation dans les prochaines pages
 	
-	echo '<p><a href="insert5.php">Continuer</a></p>';
+	echo '<p><a href="insert_competence_1.php">Continuer</a></p>';
 
 	
 

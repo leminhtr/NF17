@@ -13,7 +13,7 @@ include 'mise_en_page.html';
 	$vConn = fConnect();
 	/*Récupération de l'identifiant du candidat conservé dans la session*/
 	$vid_individu = $_SESSION['id_individu'];
-	/*Récupération de la variable passé en formulaire*/
+	/*Récupération de la variable passée en formulaire*/
 	$vid_referent = $_POST['id'];
 
 	/*Insertion dans la table posseder_referent du liant unifiant le nouveau candidat à son référent préalablement choisit*/
