@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <?php
 include 'mise_en_page.html';
