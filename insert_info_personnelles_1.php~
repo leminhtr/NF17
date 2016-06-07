@@ -3,11 +3,9 @@
 include 'mise_en_page.html';
 $vemail=$_POST['email'];
 
-
-	
 echo "<h1>Etape 1 de la création de votre CV : informations personnels</h1>";
 echo "<h3>Veuillez remplir les champs personnels ci-dessous, et veuillez retenir votre mot de passe</h3></br></br>";
-echo "<form method= 'post' action='insert3_2.php'>
+echo "<form method= 'post' action='insert_info_personnelles_2.php'>
 	<input type='hidden' name='email' value='$vemail'>
 	<label>Nom</label> : <input type='text' name='nom' required/>
 	</br></br>

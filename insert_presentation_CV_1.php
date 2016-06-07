@@ -1,9 +1,7 @@
-
-
 <html>
 <?php
 include 'mise_en_page.html';
-
+/*Cette page permet de demander au candidat les informations principales de son CV : titre, description ainsi que sa visibilité*/
 ?>
   <h1>Etape 2 de la création de votre CV : informations principales de votre CV</h1>
   <h3>Veuillez remplir les champs ci-dessous en indiquant si c'est en anglais ou en français</h3></br></br>

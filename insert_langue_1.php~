@@ -20,7 +20,7 @@ include 'mise_en_page.html';
 	</select>
 	</br></br>
 	<label>Anglais / English </label> : 
-	<select name="francais" id="francais">
+	<select name="anglais" id="anglais">
 		<option value='A0'>Vous ne parlez pas cette langue</option>
 		<option value='A1'>A1</option>
 		<option value='A2'>A2</option>
@@ -31,7 +31,7 @@ include 'mise_en_page.html';
 	</select>
 	</br></br>
 	<label>Espagnol / Spanish </label> : 
-	<select name="francais" id="francais">
+	<select name="espagnol" id="espagnol">
 		<option value='A0'>Vous ne parlez pas cette langue</option>
 		<option value='A1'>A1</option>
 		<option value='A2'>A2</option>
@@ -42,7 +42,7 @@ include 'mise_en_page.html';
 	</select>
 	</br></br>
 	<label>Allemand / German </label> : 
-	<select name="francais" id="francais">
+	<select name="allemand" id="allemand">
 		<option value='A0'>Vous ne parlez pas cette langue</option>
 		<option value='A1'>A1</option>
 		<option value='A2'>A2</option>

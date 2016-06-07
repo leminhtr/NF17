@@ -27,7 +27,7 @@ include 'mise_en_page.html';
 	$vSql = "INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES ('$vid_individu', 4, '$val')";
 	pg_query($vConn, $vSql);
 
-	echo '<p><a href="insert_langue_1.php">Continuer</a></p>';
+	echo '<p><a href="insert_referent_1.php">Continuer</a></p>';
 
 ?>
 

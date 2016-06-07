@@ -3,6 +3,8 @@
 include 'mise_en_page.html';
 $vemail=$_POST['email'];
 
+/*Page permettant de demander toutes les informations précipales sur la personne. Le formulaire est mit dans un echo simplement pour pouvoir récuperer la variable $vemail qui serait perdue sinon*/
+
 echo "<h1>Etape 1 de la création de votre CV : informations personnels</h1>";
 echo "<h3>Veuillez remplir les champs personnels ci-dessous, et veuillez retenir votre mot de passe</h3></br></br>";
 echo "<form method= 'post' action='insert_info_personnelles_2.php'>

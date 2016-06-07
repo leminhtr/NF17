@@ -9,6 +9,8 @@ include 'mise_en_page.html';
 	<tr><th>Identifiant</th><th>Nom du référent</th><th>Situation profesionnelle</th><th>employeur</th></tr>
 
 <?php
+	include "connect_projet.php";
+	$vConn = fConnect();
 	$vSql ="SELECT R.id_referent, I.nom, R.situation_pro, R.employeur FROM Referents R, Individus I WHERE R.id_referent = I.id_individu;";
 	$vQuery=pg_query($vConn, $vSql);
 	while ($vResult = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {

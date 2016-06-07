@@ -1,7 +1,7 @@
-
 <html>
 <?php
 include 'mise_en_page.html';
+/*Cette page demande à l'utilisateur de donner ses niveaux de langue pour chaque langues demandées*/
 
 ?>
   <h1>Etape 3 de la création de votre CV : langues parlées</h1>
