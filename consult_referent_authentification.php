@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <html>
-<?php
-include 'mise_en_page.html';
-?>
+<head>
+    <meta charset="UTF-8">
+    <title>Consulter les candidats que vous gérez</title>
+</head>
+<body>
 
+<div id="contenu">
+    <div id="Menu">
+    </div>
+    <div id="Bienvenue">
+    </div>
+</div>
+
+<nav>
+    <ul>
+        <li><a href="page1_projet.php">Accueil</a></li>
+        </br>
+        <p>Espace Candidats</p>
+        </br>
+        <li><a href="insert.php">Ajouter votre CV</a></li>
+        <li><a href="check.php">Modifier votre CV</a></li>
+        </br>
+        <p>Espace Entreprise</p>
+        </br>
+        <li><a href="select.html">Consulter les CV</a></li>
+        <br>
+        <p>Espace Référents</p>
+        </br>
+        <li><a href="consult_referent.html">Consulter vos candidats</a></li>
+    </ul>
+</nav>
+
+<style>
+    nav{
+        float:left;
+        width:25%;
+        height:100%;
+        border-right:1px dashed #CCC;
+        /*padding:20px;
+        margin-top:40px;*/
+    }
+</style>
 
 <h1>Espace référent : Authentification</h1>
 
@@ -26,10 +64,12 @@ else {
     $vConn = fConnect();
 
     /*Recherche référent */
-    $query_sql_mail = "SELECT i.nom, i.prenom, i.id_individu
+    $query_sql_mail = "SELECT DISTINCT i.nom, i.prenom, i.id_individu
            FROM individus i
            JOIN referents r ON i.id_individu=r.id_referent
+           JOIN posseder_referent pr ON r.id_referent = pr.id_referent
            WHERE i.mail='$mail';";
+
 
     $query_mail = pg_query($vConn, $query_sql_mail);
 

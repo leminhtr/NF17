@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <html>
-<?php
-include 'mise_en_page.html';
-?>
+<head>
+    <meta charset="UTF-8">
+    <title>Consulter le parcours d'un candidat</title>
+</head>
+<body>
 
+<div id="contenu">
+    <div id="Menu">
+    </div>
+    <div id="Bienvenue">
+    </div>
+</div>
+
+<nav>
+    <ul>
+        <li><a href="page1_projet.php">Accueil</a></li>
+        </br>
+        <p>Espace Candidats</p>
+        </br>
+        <li><a href="insert.php">Ajouter votre CV</a></li>
+        <li><a href="check.php">Modifier votre CV</a></li>
+        </br>
+        <p>Espace Entreprise</p>
+        </br>
+        <li><a href="select.html">Consulter les CV</a></li>
+        <br>
+        <p>Espace Référents</p>
+        </br>
+        <li><a href="consult_referent.html">Consulter vos candidats</a></li>
+    </ul>
+</nav>
+
+<style>
+    nav{
+        float:left;
+        width:25%;
+        height:100%;
+        border-right:1px dashed #CCC;
+        /*padding:20px;
+        margin-top:40px;*/
+    }
+</style>
 
 <h1>Consulter le parcours d'un candidat</h1>
 
@@ -15,6 +53,7 @@ include 'mise_en_page.html';
 $nom=$_POST['nom'];
 $prenom=$_POST['prenom'];
 $langue=$_POST['langue'];
+
 
 if(!empty($nom) and !empty($prenom))
 {
@@ -104,11 +143,10 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
 
             echo"<center><h2>$nom $prenom </h2></center>";
 
-
         $query_sql_cv="SELECT cvt.langue, cvt.titre, cvt.infos_complementaires
                        FROM cv_traduit cvt
                        JOIN CV ON cvt.id_cv = cv.id_cv
-                       WHERE cv.candidat='$id_candidat'
+                       WHERE cv.candidat='$array_id_candidat[0]'
                        AND cvt.langue='$langue';";
 
         $query_cv=pg_query($vConn,$query_sql_cv);

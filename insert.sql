@@ -105,6 +105,7 @@ INSERT INTO Individus (nom, prenom, mail) VALUES ('Tong','Chen','chentong@etu.ut
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Edesseau','Eumael','edesseau@etu.utc.fr');
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Le','Minh Tri','minh-tri.le@etu.utc.fr');
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Candidat1','winner','zoulou@etu.utc.fr');
+INSERT INTO Individus (nom, prenom, mail) VALUES ('Candidat1','winner','zoulou_sosie@etu.utc.fr');
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Candidat2','winner','candidat2@etu.utc.fr');
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Candidat3','winner','candidat3@etu.utc.fr');
 INSERT INTO Individus (nom, prenom, mail) VALUES ('Lussier','Benjamin','b.lussier@utc.fr');
@@ -114,7 +115,7 @@ INSERT INTO Individus (nom, prenom, mail) VALUES ('New','Fellow','new_fellow@utc
 
 INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type, url_web) VALUES (5, 'zoulou','zoulou', '0654852635','portable','https://google.fr');
 UPDATE Candidats SET url_web='https://google.fr' where id_candidat=5;
-
+INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type, url_web) VALUES (11, 'zoulou_sosie','zoulou_sosie', '0654852635','portable','https://google.fr');
 
 INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES (6, 'minhtrile','minhtrile', '0654852637','portable');
 INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type) VALUES (7, 'camille','camille', '0654852638','portable');
@@ -135,6 +136,7 @@ BEGIN TRANSACTION;
 INSERT INTO CV (candidat, statut, date_creation, date_maj) VALUES (5,'active','2012-06-23','2012-06-23');
 INSERT INTO CV (candidat, statut, date_creation, date_maj) VALUES (7,'confidentiel','2012-06-22',current_date);
 INSERT INTO CV (candidat, statut, date_creation, date_maj) VALUES (6,'desactive','2012-06-21',current_date);
+INSERT INTO CV (candidat, statut, date_creation, date_maj) VALUES (11,'active','2010-06-21',current_date);
 
 INSERT INTO CV_traduit (id_CV, langue, titre) VALUES (1,'FR','Recherche de stage');
 INSERT INTO CV_traduit (id_CV, langue, titre) VALUES (1,'EN','Searching for a job');
