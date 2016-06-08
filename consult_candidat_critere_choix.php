@@ -30,26 +30,36 @@ else
     include "connect_projet.php";
     $vConn = fConnect();
 
-    //Condition SQL IN ('condition1', 'condition2',...) pour select multiple formulaire
-    if(count($domaine_array)>0)
-    {
-        $domaine_array_implode = implode("','", $domaine_array);
-        $domaine_array_implode = "'".$domaine_array_implode."'";    //('Info', 'Bio')
 
-        $condition_domaine="AND cd.de_fr IN ($domaine_array_implode)";
+    //Condition SQL IN ('condition1', 'condition2',...) pour select multiple formulaire
+
+    $i=0; //Compteur concaténation
+    $nb_domaine_requis=count($domaine_array);   //Nombre de critère domaine
+    $condition_domaine='';
+    if($nb_domaine_requis>0)
+    {
+        for($i=0;$i<$nb_domaine_requis;$i++)
+        {
+            $condition_domaine="$condition_domaine JOIN (SELECT id_candidat FROM candidats_domaines 
+                        WHERE de_fr='$domaine_array[$i]') AS cd$i ON cd$i.id_candidat=ic.id_individu";
+
+        }
     }
     else
     {
         $condition_domaine='';
     }
 
-    if(count($langue_array)>0)
+    $nb_langue_requis=count($langue_array);
+    $condition_langue='';
+    if($nb_langue_requis>0)
     {
-        $langue_array_implode = implode("','", $langue_array);
-        $langue_array_implode = "'".$langue_array_implode."'";  //('Français', 'Anglais',...)
+        for($i=0;$i<$nb_langue_requis;$i++)
+        {
+            $condition_langue="$condition_langue JOIN (SELECT id_candidat FROM candidats_langues 
+                        WHERE nom_fr='$langue_array[$i]') AS cl$i ON cl$i.id_candidat=ic.id_individu ";
 
-        $condition_langue="AND cl.nom_fr IN ($langue_array_implode)";
-        echo "$condition_langue";
+        }
     }
     else
     {
@@ -72,6 +82,7 @@ else
                 break;
             //pas de borne min pour > 5 ans(>1826)
             }
+        //construction condition duree_exp
         if($duree==1826)
         {
             $condition_duree_exp="AND duree_exp_pro_tot((ic.id_individu))>$duree";
@@ -82,7 +93,7 @@ else
         }
 
     }
-
+    //Construction requête nb_exp (HAVING)
     if(!(empty($nb_exp)))
     {
         $condition_nb_exp="HAVING COUNT (DISTINCT cep.date_debut)>$nb_exp";
@@ -91,48 +102,27 @@ else
     {
         $condition_nb_exp='';
     }
-
+    //requête de base
     $query_sql_recherche_basique="SELECT ic.id_individu, ic.nom, ic.prenom, cf.titre, extract(YEAR from max(cf.date_fin)), duree_exp_pro_tot(ic.id_individu), COUNT(DISTINCT cep.date_debut)
                                 FROM individus_candidats ic
                                 JOIN candidats_domaines cd ON ic.id_individu=cd.id_candidat
                                 JOIN candidats_experiences_pro cep ON cep.id_candidat=cd.id_candidat
                                 JOIN candidats_langues cl ON cl.id_candidat=cep.id_candidat
-                                JOIN candidats_formations cf ON cf.id_candidat=cl.id_candidat
-                                WHERE cep.langue='FR'
-                                      AND cf.langue='FR'
-                                      AND cf.date_fin= (select max(cf2.date_fin)  /*Dernière formations*/
-                                                        from candidats_formations cf2
-                                                        WHERE cf2.id_candidat=cf.id_candidat)";
+                                JOIN candidats_formations cf ON cf.id_candidat=cl.id_candidat";
 
+    $query_recherche_where="WHERE cep.langue='FR' AND cf.langue='FR' AND cf.date_fin= (select max(cf2.date_fin) from candidats_formations cf2 WHERE cf2.id_candidat=cf.id_candidat)";
     $GROUP_BY="GROUP BY ic.id_individu, ic.nom, ic.prenom,  duree_exp_pro_tot(ic.id_individu), extract(YEAR FROM cf.date_fin), cf.titre";
-    //$query_sql_recherche_candidat=$query_sql_recherche_candidat.$condition_finale.$GROUP_BY.$HAVING;
 
-$condition_finale=$condition_domaine.' '.$condition_langue.' '.$condition_duree_exp.' '.$GROUP_BY.' '.$condition_nb_exp;
-        echo"<br>$condition_finale<br>";
+    //JOIN domaine ON... JOIN langue ON ... WHERE... AND duree_exp... GROUP BY... HAVING... ;
+$condition_finale=$condition_domaine.$condition_langue.$query_recherche_where.$condition_duree_exp.' '.$GROUP_BY.' '.$condition_nb_exp;
 
+    //SELECT...JOIN... ON... $condition_finale
     $query_sql_recherche_candidat=$query_sql_recherche_basique.$condition_finale.';';
-    echo"<br><br>$query_sql_recherche_candidat<br>";
 
-   /* $query_sql_recherche_candidat="SELECT ic.id_individu, ic.nom, ic.prenom, cf.titre, extract(YEAR from max(cf.date_fin)), duree_exp_pro_tot(ic.id_individu), COUNT(DISTINCT cep.date_debut)
-                                FROM individus_candidats ic
-                                JOIN candidats_domaines cd ON ic.id_individu=cd.id_candidat
-                                JOIN candidats_experiences_pro cep ON cep.id_candidat=cd.id_candidat
-                                JOIN candidats_langues cl ON cl.id_candidat=cep.id_candidat
-                                JOIN candidats_formations cf ON cf.id_candidat=cl.id_candidat
-                                WHERE cep.langue='FR'
-                                      AND cf.langue='FR'
-                                      AND cf.date_fin= (select max(cf2.date_fin)  /*Dernière formations
-                                                        from candidats_formations cf2
-                                                        WHERE cf2.id_candidat=cf.id_candidat)
-                                      AND cl.nom_fr IN ($condition_langue)
-                                      AND cd.de_fr IN ($condition_domaine)
-                                      AND duree_exp_pro_tot((ic.id_individu))>$duree
-                                GROUP BY ic.id_individu, ic.nom, ic.prenom,  duree_exp_pro_tot(ic.id_individu), extract(YEAR FROM cf.date_fin), cf.titre
-                                HAVING COUNT (DISTINCT cep.date_debut)>$nb_exp";
-*/
-        $query_recherche_candidat=pg_query($vConn,$query_sql_recherche_candidat);
-        $nb_candidat_found=pg_num_rows($query_recherche_candidat);
-        echo"Nous avons trouvé $nb_candidat_found candidat(s) correspondant(s) à vos critères.<br><br>";
+    $query_recherche_candidat=pg_query($vConn,$query_sql_recherche_candidat);
+
+    $nb_candidat_found=pg_num_rows($query_recherche_candidat);
+    echo"Nous avons trouvé $nb_candidat_found candidat(s) correspondant(s) à vos critères.<br><br>";
 
     if($nb_candidat_found==0)
     {
@@ -177,40 +167,41 @@ $condition_finale=$condition_domaine.' '.$condition_langue.' '.$condition_duree_
         echo"<form method='post' action='consult_parcours_candidat_choisi.php'> ";
         while ($row_recherche_candidat=pg_fetch_array($query_recherche_candidat))
         {
-            $id_candidat=$row_recherche_candidat[0];
+            $id_candidat=$row_recherche_candidat[0];    //passage id_candidat à sous requête langue/domaine
             echo"<tr>";
             echo"<td><input type='radio'value='$row_recherche_candidat[0]' name='id_candidat'>$row_recherche_candidat[0]</td> <td>$row_recherche_candidat[1]</td><td>$row_recherche_candidat[2]</td>";    //ID Nom Prénom
             echo"<td>$row_recherche_candidat[3]<br>diplômé(e) en $row_recherche_candidat[4]</td>";    //titre diplôme en année
 
-                if(count($domaine_array)>0) //listes tous les domaines maîtrisés
+            echo"<td col='10'>";   //domaine étude
+                if($nb_domaine_requis>0) //listes tous les domaines maîtrisés
                 {
                     $query_sql_recherche_candidat_domaine="SELECT cd.de_fr,cd.de_en
                                            FROM candidats_domaines cd
                                            WHERE cd.id_candidat='$id_candidat';";
                     $query_recherche_candidat_domaine=pg_query($vConn,$query_sql_recherche_candidat_domaine);
 
-                    echo"<td>";   //domaine étude
                     while ($row_recherche_candidat_domaine=pg_fetch_array($query_recherche_candidat_domaine))
                     {
                         echo"$row_recherche_candidat_domaine[0] | $row_recherche_candidat_domaine[1]<br>";
                     }
                     echo"</td>";
                 }
-
-                if(count($langue_array)>0)  //print liste toutes les langues parlées
+            echo"<td col='19'>";   //domaine langue
+                if($nb_langue_requis>0)  //print liste toutes les langues parlées
                 {
                     $query_sql_recherche_candidat_langue="SELECT cl.nom_fr, cl.nom_en
                                                FROM candidats_langues cl
                                                WHERE cl.id_candidat='$id_candidat';";
                     $query_recherche_candidat_langue=pg_query($vConn,$query_sql_recherche_candidat_langue);
 
-                    echo"<td>";   //domaine étude
-                    while ($row_recherche_candidat_domaine=pg_fetch_array($query_recherche_candidat_domaine))
+                    while ($row_recherche_candidat_langue=pg_fetch_array($query_recherche_candidat_langue))
                     {
-                        echo"$row_recherche_candidat_domaine[0] | $row_recherche_candidat_domaine[1]<br>";
+                        echo"$row_recherche_candidat_langue[0] | $row_recherche_candidat_langue[1]<br>";
                     }
                     echo"</td>";
+                    $row_recherche_candidat_langue=pg_result_seek($query_recherche_candidat_langue,0);
                 }
+                //affichage durée exp : x an y mois z jours
                 $duree_tot=$row_recherche_candidat[5];
                 if($duree_tot>0 and $duree_tot<30)
                     echo"<td>$duree_tot jours</td>";   //duree_exp_total
@@ -220,24 +211,28 @@ $condition_finale=$condition_domaine.' '.$condition_langue.' '.$condition_duree_
                     $month = floor($month);             // Arrondi
                     $days = ($duree_tot % 365) % 30.5;
 
-                    echo"<td>$month mois et $days jour(s)";
+                    echo"<td>$month mois et $days jour(s)</td>";
                 }
                 if($duree_tot>365)
                 {
-                    $years = ($duree_tot / 365) ; // days / 365 days
+                    $years = ($duree_tot / 365) ; // jours / 365 jours
                     $years = floor($years); // Arrondi
 
                     $month = ($duree_tot % 365) / 30.5; // 30+31/2
                     $month = floor($month); // Arrondi
 
-                    echo"<td>$years an(s) et $month mois";
+                    echo"<td>$years an(s) et $month mois</td>";
                 }
+
             echo"<td>$row_recherche_candidat[6]</td>";   //nb_exp
             echo"</tr>";
-
+            //passage var. à page suivante
             echo"<input type='hidden' value=$row_recherche_candidat[1] name='nom'>";
             echo"<input type='hidden' value=$row_recherche_candidat[2] name='prenom'>";
         }
+        echo"</table>";
+
+        echo"<table>";
         echo"<tr>";
         echo"<td></td>";
         echo"</tr>";
@@ -262,7 +257,9 @@ $condition_finale=$condition_domaine.' '.$condition_langue.' '.$condition_duree_
 
         echo"<tr>";
         echo"<td><input type='submit' value='Consulter ce candidat'></td>";
+        echo"</form>";
         echo"</tr>";
+        echo"</table>";
 
 
     }
