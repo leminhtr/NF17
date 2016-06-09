@@ -3,19 +3,19 @@
 <?php
 include 'mise_en_page.html';
 ?>
-<h1>Etape 4 de la création de votre CV : Formation</h1>
+<h1>Etape 5 de la création de votre CV : Expérience porffessionnelle</h1>
   <p>Veuillez répondre à la question pour continuez</p>
 <?php
 	include 'connect_projet.php';
 	$vCon = fConnect();
 
-	$vDE_fr = $_POST['DE_fr'];
-	$vDE_en = $_POST['DE_en'];
+	$vSE_fr = $_POST['SE_fr'];
+	$vSE_en = $_POST['SE_en'];
 
-	$vSQL = "SELECT * FROM Domaine_etude WHERE DE_fr = '$vDE_fr' AND DE_en = '$vDE_en';";
+	$vSQL = "SELECT * FROM Secteur_Activites WHERE DE_fr = '$vSE_fr' AND DE_en = '$vSE_en';";
 	$vQuery = pg_query($vCon,$vSQL);
 	if(pg_fetch_array($vQuery, NULL, PGSQL_ASSOC) == NULL){
-		$vSQL = "INSERT INTO Domaines_etude(DE_fr,DE_en) VALUES ('$vDE_fr','$vDE_en');";
+		$vSQL = "INSERT INTO Secteur_Activites(SE_fr,SE_en) VALUES ('$vSE_fr','$vSE_en');";
 		pg_query($vCon,$vSQL);
 	}
 	
@@ -24,15 +24,13 @@ include 'mise_en_page.html';
 
 	$vdate_d = $_POST['date_debut'];
 	$vdate_f = $_POST['date_fin'];
-	$vEtab = $_POST['etablissement'];
-	$vPays = $_POST['pays'];
-	$vVille = $_POST['ville'];
-	$vId_DE = $vResult['id_DE'];
+	$vEntpr = $_POST['entreprise'];
+	$vId_SE = $vResult['id_SE'];
 
-	$vSQL = "SELECT * FROM Formation WHERE date_debut = '$vdate_d' AND date_fin = '$vdate_f' AND etablissement = '$vEtab';"
+	$vSQL = "SELECT * FROM Experience_Pro WHERE date_debut = '$vdate_d' AND date_fin = '$vdate_f' AND nom_entreprise = '$vEntpr';"
 	$vQuery = pg_query($vCon,$vSQL);
 	if(pg_fetch_array($vQuery, NULL, PGSQL_ASSOC) == NULL){
-		$vSQL = "INSERT INTO Formation(date_debut, date_fin, etablissement, pays, ville, domaine_etude) VALUES ('$vdate_d','$vdate_f', '$vEtab', '$vPays', '$vVille', '$Id_DE');";
+		$vSQL = "INSERT INTO Formation(nom_entreprise,date_debut, date_fin, etablissement, secteur_activites) VALUES ('$vEntpré,'$vdate_d','$vdate_f','$Id_SE');";
 		pg_query($vCon,$vSQL);
 	}
 

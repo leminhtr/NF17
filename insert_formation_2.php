@@ -11,7 +11,7 @@ include 'mise_en_page.html';
 	$vJ = $_SESSION['j'];
 	$_SESSION['j'] = $vJ+1;
 	?>
-<form method= "post" action="insert10.php">
+<form method= "post" action="insert_formation_4.php">
 	</br>
 	</br>
 	<label>Domaine d'étude</label>
