@@ -62,15 +62,7 @@ include 'mise_en_page.html';
 	}
 	
 
-	$vtitre2 = $_POST['titre2'];
-	$vfonct2 = $_POST['fonct2'];
-	$vlangue2 = $_POST['langue2'];
-	$vSQL = "SELECT * FROM Formation_traduite WHERE titre_poste = '$vtitre2' AND fonction = '$vfonct2' AND langue = '$vlangue2';";
-	$vQuery = pg_query($vCon,$vSQL);
-	if(pg_fetch_array($vQuery, NULL, PGSQL_ASSOC) == NULL){
-		$vSQL2 = "INSERT INTO Experience_Pro_Traduite(titre_poste,fonction,langue,id_exp) VALUES ('$vtitre2','$vfonct2','$vlangue2','$vId_exp');";
-		pg_query($vCon,$vSQL2);
-	}
+
 
 	$vID = $_SESSION['id'];
 
