@@ -29,8 +29,8 @@ include 'mise_en_page.html';
 
 ?>
 	<h2>Petit récapitulatif des données que vous avez déjà entrées</h2>
-	<h3>Présentation du CV : Version en français</h3>
 	<table border="1">
+	<tr><h3>Présentation du CV : Version en français</h3></tr>
 	<tr><th>Statut du CV</th><th>Titre</th><th>Description</th></tr>
 
 <?php
@@ -46,8 +46,9 @@ include 'mise_en_page.html';
 	echo "</tr>";}
 
 ?>
-	<h3>Présentation du CV : Version en anglais</h3>
+	
 	<table border="1">
+	<tr><h3>Présentation du CV : Version en anglais</h3></tr>
 	<tr><th>Statut du CV</th><th>Titre</th><th>Description</th></tr>
 
 <?php
@@ -64,8 +65,9 @@ include 'mise_en_page.html';
 
 
 ?>
-	<h3>Informations personnelles</h3>
+
 	<table border="1">
+	<tr><h3>Informations personnelles</h3></tr>
 	<tr><th>Identifiant</th><th>Nom</th><th>Prenom</th><th>Mail</th><th>Mot de Passe</th><th>Telephone</th><th>URL</th></tr>
 
 <?php
@@ -85,8 +87,9 @@ include 'mise_en_page.html';
 
 
 ?>
-	<h3>Niveaux de langue</h3>
+
 	<table border="1">
+	<tr><h3>Niveaux de langue</h3></tr>
 	<tr><th>Langue</th><th>Langue</th><th>Niveau</th></tr>
 
 <?php
