@@ -118,7 +118,7 @@ $condition_finale=$condition_domaine.$condition_langue.$query_recherche_where.$c
 
     //SELECT...JOIN... ON... $condition_finale
     $query_sql_recherche_candidat=$query_sql_recherche_basique.$condition_finale.';';
-echo"$query_sql_recherche_candidat";
+
     $query_recherche_candidat=pg_query($vConn,$query_sql_recherche_candidat);
 
     $nb_candidat_found=pg_num_rows($query_recherche_candidat);

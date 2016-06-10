@@ -170,7 +170,7 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
 
         $nb_associations_found = pg_num_rows($query_association);  //nb. formation suivie par candidat
 
-        echo "$nom $prenom a participé à $nb_associations_found formation(s).<br><br>";
+        echo "$nom $prenom a participé à $nb_associations_found association(s).<br><br>";
 
         if ($nb_associations_found > 0) {
             echo "<table>";
@@ -261,7 +261,6 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
                 echo "</tr>";
             }
         }
-
 
         $query_sql_langue = "SELECT cl.nom_en, cl.niveau_langue
                                FROM candidats_langues cl
@@ -382,7 +381,7 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
 
         $nb_associations_found = pg_num_rows($query_association);  //nb. formation suivie par candidat
 
-        echo "$nom $prenom a participé à $nb_associations_found formation(s).<br><br>";
+        echo "$nom $prenom a participé à $nb_associations_found association(s).<br><br>";
 
         if ($nb_associations_found > 0) {
             echo "<table>";
