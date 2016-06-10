@@ -41,7 +41,7 @@ else
         for($i=0;$i<$nb_domaine_requis;$i++)
         {
             $condition_domaine="$condition_domaine JOIN (SELECT id_candidat FROM candidats_domaines 
-                        WHERE de_fr='$domaine_array[$i]') AS cd$i ON cd$i.id_candidat=ic.id_individu";
+                        WHERE de_fr='$domaine_array[$i]') AS cd$i ON cd$i.id_candidat=ic.id_individu ";
 
         }
     }
@@ -118,7 +118,7 @@ $condition_finale=$condition_domaine.$condition_langue.$query_recherche_where.$c
 
     //SELECT...JOIN... ON... $condition_finale
     $query_sql_recherche_candidat=$query_sql_recherche_basique.$condition_finale.';';
-
+echo"$query_sql_recherche_candidat";
     $query_recherche_candidat=pg_query($vConn,$query_sql_recherche_candidat);
 
     $nb_candidat_found=pg_num_rows($query_recherche_candidat);
@@ -173,8 +173,7 @@ $condition_finale=$condition_domaine.$condition_langue.$query_recherche_where.$c
             echo"<td>$row_recherche_candidat[3]<br>diplômé(e) en $row_recherche_candidat[4]</td>";    //titre diplôme en année
 
             echo"<td col='10'>";   //domaine étude
-                if($nb_domaine_requis>0) //listes tous les domaines maîtrisés
-                {
+
                     $query_sql_recherche_candidat_domaine="SELECT cd.de_fr,cd.de_en
                                            FROM candidats_domaines cd
                                            WHERE cd.id_candidat='$id_candidat';";
@@ -185,10 +184,8 @@ $condition_finale=$condition_domaine.$condition_langue.$query_recherche_where.$c
                         echo"$row_recherche_candidat_domaine[0] | $row_recherche_candidat_domaine[1]<br>";
                     }
                     echo"</td>";
-                }
-            echo"<td col='19'>";   //domaine langue
-                if($nb_langue_requis>0)  //print liste toutes les langues parlées
-                {
+
+            echo"<td col='19'>";   //langue
                     $query_sql_recherche_candidat_langue="SELECT cl.nom_fr, cl.nom_en
                                                FROM candidats_langues cl
                                                WHERE cl.id_candidat='$id_candidat';";
@@ -200,7 +197,7 @@ $condition_finale=$condition_domaine.$condition_langue.$query_recherche_where.$c
                     }
                     echo"</td>";
                     $row_recherche_candidat_langue=pg_result_seek($query_recherche_candidat_langue,0);
-                }
+
                 //affichage durée exp : x an y mois z jours
                 $duree_tot=$row_recherche_candidat[5];
                 if($duree_tot>0 and $duree_tot<30)

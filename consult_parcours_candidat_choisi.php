@@ -160,20 +160,127 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
             echo "</table>";
         }
 
-        echo "<h3>Langues</h3>";
+        echo "<h3>Associations</h3>";
 
-        $query_sql_langue = "SELECT cl.nom_fr, cl.niveau_langue
+        $query_sql_association = "  SELECT DISTINCT ca.nom_asso, ca.description, ca.date_debut, ca.date_fin, ca.statut_fr
+                                  FROM candidats_associations ca
+                                  WHERE ca.langue='$langue'
+                                      AND ca.id_candidat='$id_candidat';";
+        $query_association = pg_query($vConn, $query_sql_association);
+
+        $nb_associations_found = pg_num_rows($query_association);  //nb. formation suivie par candidat
+
+        echo "$nom $prenom a participé à $nb_associations_found formation(s).<br><br>";
+
+        if ($nb_associations_found > 0) {
+            echo "<table>";
+
+            echo "<tr>";
+            echo "<th>Nom de l'association</th>";
+            echo "<th>Description</th>";
+            echo "<th>Date de début</th>";
+            echo "<th>Date de fin</th>";
+            echo "<th>Statut</th>";
+            echo "</tr>";
+
+            while ($row_association = pg_fetch_array($query_association)) {
+                echo "<tr>";
+                echo "<td>$row_association[0]</td>";    //Nom de l'asso
+                echo "<td><center>$row_association[1])</center></td>"; //Description
+                echo "<td><center>$row_association[2])</center></td>"; //Date début
+                echo "<td><center>$row_association[3])</center></td>"; //Date fin
+                echo "<td><center>$row_association[4])</center></td>"; //Statut
+                echo "</tr>";
+
+            }
+
+            echo "</table>";
+        }
+
+        echo "<h3>Publications</h3>";
+
+        $query_sql_publication = "  SELECT p.titre, p.contenu, dp.date, dp.isbn
+                                      FROM candidats c
+                                      LEFT JOIN ecrire_publication ep ON c.id_candidat = ep.id_candidat
+                                      JOIN publications p ON ep.id_publication = p.id_pub
+                                      JOIN datepublication dp ON p.id_date_pub = dp.id_date_pub
+                                      WHERE c.id_candidat='$id_candidat';";
+        $query_publication = pg_query($vConn, $query_sql_publication);
+
+        $nb_publication_found = pg_num_rows($query_publication);  //nb. formation suivie par candidat
+
+
+        echo "$nom $prenom a écrit $nb_publication_found publication(s).<br><br>";
+
+        if ($nb_publication_found > 0) {
+
+            echo "<table>";
+
+            echo "<tr>";
+            echo "<th>Titre</th>";
+            echo "<th>Contenu</th>";
+            echo "<th>Date de publication</th>";
+            echo "<th>ISBN</th>";
+            echo "</tr>";
+
+            while ($row_publication = pg_fetch_array($query_publication)) {
+                echo "<tr>";
+                echo "<td><center>$row_publication[0]</center><td>";    //Titre
+                echo "<td><center>$row_publication[1]</center><td>";    //Contenu (TEXT)
+                echo "<td><center>$row_publication[2]</center><td>";    //Date
+                echo "<td><center>$row_publication[3]</center><td>";    //ISBN
+                echo "</tr>";
+
+            }
+
+            echo "</table>";
+        }
+
+        echo "<h3>Compétences</h3>";
+
+        $query_sql_competence = "SELECT pc.nom
+                               FROM candidats c 
+                               JOIN posseder_competence pc ON c.id_candidat = pc.id_candidat
+                               WHERE pc.langue='$langue'
+                                 AND c.id_candidat='$id_candidat';";
+        $query_competence = pg_query($vConn, $query_sql_competence);
+
+        $nb_competence_found = pg_num_rows($query_competence);
+
+        echo "$nom $prenom maîtrise $nb_competence_found compétence(s).<br><br>";
+
+        if ($nb_competence_found > 0) {
+            echo "<table>";
+            echo "<tr>";
+            echo "<th><center>Nom</center></th>";
+            echo "</tr>";
+
+            while ($row_competence = pg_fetch_array($query_competence)) {
+                echo "<tr>";
+                echo "<td>$row_competence[0]</td>";  //Compétence
+                echo "</tr>";
+            }
+        }
+
+
+        $query_sql_langue = "SELECT cl.nom_en, cl.niveau_langue
                                FROM candidats_langues cl
                                WHERE cl.id_candidat='$id_candidat';";
         $query_langue = pg_query($vConn, $query_sql_langue);
 
         $nb_langue_found = pg_num_rows($query_langue);
 
-        echo "$nom $prenom parle $nb_langue_found langue(s).<br><br>";
+        echo "<table>";
+        echo "<tr>";
+        echo "<h3>Langues</h3>";
+        echo "</tr>";
 
+        echo "<tr>";
+        echo "$nom $prenom parle $nb_langue_found langue(s).<br><b";
+        echo"</tr>";
+        echo"<tr>";
         if ($nb_langue_found > 0) {
-            echo "<table>";
-            echo "<tr>";
+
             echo "<th><center>Langue</center></th>";
             echo "<th><center>Niveau</center></th>";
             echo "</tr>";
@@ -186,6 +293,19 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
             }
 
         }
+
+        if ($nb_cv_found != 0) {
+            echo"<table>";
+            echo"<tr>";
+            echo "<h3>Informations complémentaires</h3><br>";
+
+            while ($row_cv = pg_fetch_array($query_cv)) {
+                echo "$row_cv[3]"; //infos complémentaires
+            }
+            echo"<tr>";
+            echo "</table>";
+        }
+
     } else    //Langue_EN
     {
         $query_sql_experience = "SELECT cep.fonction, cep.date_debut, cep.date_fin, cep.nom_entreprise, es.sa_en
@@ -252,7 +372,104 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
             echo "</table>";
         }
 
-        echo "<h3>Langues</h3>";
+        echo "<h3>Associations</h3>";
+
+        $query_sql_association = "  SELECT DISTINCT ca.nom_asso, ca.description, ca.date_debut, ca.date_fin, ca.statut_en
+                                  FROM candidats_associations ca
+                                  WHERE ca.langue='$langue'
+                                      AND ca.id_candidat='$id_candidat';";
+        $query_association = pg_query($vConn, $query_sql_association);
+
+        $nb_associations_found = pg_num_rows($query_association);  //nb. formation suivie par candidat
+
+        echo "$nom $prenom a participé à $nb_associations_found formation(s).<br><br>";
+
+        if ($nb_associations_found > 0) {
+            echo "<table>";
+
+            echo "<tr>";
+            echo "<th>Nom de l'association</th>";
+            echo "<th>Description</th>";
+            echo "<th>Date de début</th>";
+            echo "<th>Date de fin</th>";
+            echo "<th>Statut</th>";
+            echo "</tr>";
+
+            while ($row_association = pg_fetch_array($query_association)) {
+                echo "<tr>";
+                echo "<td>$row_association[0]</td>";    //Nom de l'asso
+                echo "<td><center>$row_association[1])</center></td>"; //Description
+                echo "<td><center>$row_association[2])</center></td>"; //Date début
+                echo "<td><center>$row_association[3])</center></td>"; //Date fin
+                echo "<td><center>$row_association[4])</center></td>"; //Statut
+                echo "</tr>";
+
+            }
+
+            echo "</table>";
+        }
+
+        echo "<h3>Publications</h3>";
+
+        $query_sql_publication = "  SELECT cp.titre, cp.contenu, cp.date, cp.isbn
+                                      FROM candidats_publications cp  
+                                      WHERE cp.id_candidat='$id_candidat';";
+        $query_publication = pg_query($vConn, $query_sql_publication);
+
+        $nb_publication_found = pg_num_rows($query_publication);  //nb. formation suivie par candidat
+
+
+        echo "$nom $prenom a écrit $nb_publication_found publication(s).<br><br>";
+
+        if ($nb_publication_found > 0) {
+
+            echo "<table>";
+
+            echo "<tr>";
+            echo "<th>Titre</th>";
+            echo "<th>Contenu</th>";
+            echo "<th>Date de publication</th>";
+            echo "<th>ISBN</th>";
+            echo "</tr>";
+
+            while ($row_publication = pg_fetch_array($query_publication)) {
+                echo "<tr>";
+                echo "<td><center>$row_publication[0]</center><td>";    //Titre
+                echo "<td><center>$row_publication[1]</center><td>";    //Contenu (TEXT)
+                echo "<td><center>$row_publication[2]</center><td>";    //Date
+                echo "<td><center>$row_publication[3]</center><td>";    //ISBN
+                echo "</tr>";
+
+            }
+
+            echo "</table>";
+        }
+
+        echo "<h3>Compétences</h3>";
+
+        $query_sql_competence = "SELECT pc.nom
+                               FROM candidats c 
+                               JOIN posseder_competence pc ON c.id_candidat = pc.id_candidat
+                               WHERE pc.langue='$langue'
+                                 AND c.id_candidat='$id_candidat';";
+        $query_competence = pg_query($vConn, $query_sql_competence);
+
+        $nb_competence_found = pg_num_rows($query_competence);
+
+        echo "$nom $prenom maîtrise $nb_competence_found compétence(s).<br><br>";
+
+        if ($nb_competence_found > 0) {
+            echo "<table>";
+            echo "<tr>";
+            echo "<th><center>Nom</center></th>";
+            echo "</tr>";
+
+            while ($row_competence = pg_fetch_array($query_competence)) {
+                echo "<tr>";
+                echo "<td>$row_competence[0]</td>";  //Compétence
+                echo "</tr>";
+            }
+        }
 
         $query_sql_langue = "SELECT cl.nom_en, cl.niveau_langue
                                FROM candidats_langues cl
@@ -261,11 +478,18 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
 
         $nb_langue_found = pg_num_rows($query_langue);
 
-        echo "$nom $prenom parle $nb_langue_found langue(s).<br><br>";
+        echo "<table>";
+        echo "<tr>";
+        echo "<h3>Langues</h3>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "$nom $prenom parle $nb_langue_found langue(s).<br><b";
+        echo"</tr>";
+        echo"<tr>";
 
         if ($nb_langue_found > 0) {
-            echo "<table>";
-            echo "<tr>";
+
             echo "<th><center>Langue</center></th>";
             echo "<th><center>Niveau</center></th>";
             echo "</tr>";
@@ -279,11 +503,15 @@ WHERE ic.id_individu=statut_cv.candidat               /*que les individus qui n'
         }
 
         if ($nb_cv_found != 0) {
+            echo"<table>";
+            echo"<tr>";
             echo "<h3>Informations complémentaires</h3><br>";
 
             while ($row_cv = pg_fetch_array($query_cv)) {
                 echo "$row_cv[3]"; //infos complémentaires
             }
+            echo"<tr>";
+            echo "</table>";
         }
     }
 }
