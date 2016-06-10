@@ -11,7 +11,7 @@
 		$vConn = fConnect();
 		$email=$_POST['email'];
 
-		$vSql="SELECT * FROM Individus"; 
+		$vSql="SELECT * FROM Individus";  
 		$vQuery=pg_query($vConn, $vSql);
 		$vverif = 0; 
                 $idIndividu=0;
