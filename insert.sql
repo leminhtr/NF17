@@ -85,8 +85,8 @@ COMMIT;
 BEGIN TRANSACTION;
 
 
-INSERT INTO Langues (nom_fr, nom_en) VALUES ('Francais','French');
-INSERT INTO Langues (nom_fr, nom_en) VALUES ('Angais','English');
+INSERT INTO Langues (nom_fr, nom_en) VALUES ('Français','French');
+INSERT INTO Langues (nom_fr, nom_en) VALUES ('Anglais','English');
 INSERT INTO Langues (nom_fr, nom_en) VALUES ('Espagnol','Spanish');
 INSERT INTO Langues (nom_fr, nom_en) VALUES ('Allemand','German');
 
