@@ -11,7 +11,7 @@ include 'mise_en_page.html';
 ?>
 
 
-?>
+
 
 <hr/>
 </body>

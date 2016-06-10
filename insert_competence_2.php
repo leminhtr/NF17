@@ -20,7 +20,7 @@ include 'mise_en_page.html';
 	
 	//-> récuperer l'id du candidat !!!
 
-	$vID = $_SESSION['id'];
+	$vID = $_SESSION['id_individu'];
 	
 	$vSQL = "SELECT id_candidat, nom, langue FROM Posseder_Competence WHERE nom = '$vCompt' AND langue = '$vLang';";
 	$vQuery = pg_query($vCon,$vSQL);

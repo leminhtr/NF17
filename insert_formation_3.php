@@ -11,7 +11,7 @@ include 'mise_en_page.html';
 	$vJ = $_SESSION['j'];
 	$_SESSION['j'] = $vJ+1;
 	?>
-<form method= "post" action="insert11.php">
+<form method= "post" action="insert_formation_5.php">
 	</br>
 	</br>
 	<label>Domaine d'étude</label>
@@ -33,15 +33,15 @@ include 'mise_en_page.html';
 
 	</br>
 	</br>
-	<label>Date de début</label> : <input type="date" name="date_debut" require/>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/>
 	</br>
-	<label>Date de fin</label> : <input type="date" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
 	</br>
 	<label>Etablissement</label> : <input type="text" name="etablissement" require/>
 	</br>
 	<label>Pays</label> : <input type="text" name="pays" />
 	</br>
-	<label>Ville</label> : <input type="text" name="Ville" />
+	<label>Ville</label> : <input type="text" name="ville" />
 	</br>
 	</br>
 	<input type="submit" value="valider" />

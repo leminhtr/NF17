@@ -43,9 +43,9 @@ include 'mise_en_page.html';
 		<option value='EN'>English</option></select>
 	</br>
 	</br>
-	<label>Date de début</label> : <input type="date" name="date_debut" require/>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/>
 	</br>
-	<label>Date de fin</label> : <input type="date" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
 	</br>
 	<label>Etablissement</label> : <input type="text" name="etablissement" require/>
 	</br>
