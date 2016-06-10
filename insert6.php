@@ -1,47 +1,39 @@
+<?php session_start();?>
 <html>
-<head>
-  <title>Inscription Soutenance NF17</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-<nav>
-    <ul>
-        <li><a href="page1_projet.php">Accueil</a></li>
-	</br>
-	<p>Espace Candidats</p>
-	</br>
-        <li><a href="insert.php">Ajouter votre CV</a></li>
-        <li><a href="check.php">Modifier votre CV</a></li>
-	</br>
-	<p>Espace Référents</p>
-	</br>
-	<li><a href="select.php">Consulter les CV</a></li>
-    </ul>
-</nav>
-<style>
-nav{
-    float:left;
-    width:25%;
-    height:200%;
-    border-right:1px dashed #CCC;
-    /*padding:20px;
-    margin-top:40px;*/
-}
-</style>
-<h1>Etape 3 de la création de votre CV : Compétence</h1>
-  <p>Veuillez remplir les champs ci-dessous</p>
 <?php
-	$vnb = $_POST['nb'];
+include 'mise_en_page.html';
+?>
+<h1>Etape 3 de la création de votre CV : Compétence</h1>
+<?php
+	include 'connect_projet.php';
+	$vCompt = $_POST['Compt'];
+	$vLang = $_POST['Langue'];
+	$vCon = fConnect();
 
-	for($i=0;$i<$vnb;$i++){
-		echo '(*) Compétence n°';
-		echo $i+1;
-		echo '<p><label>Nom</label> : <input type="text" name="nom" /></br></p>';
-		echo '<p><label>Langue</label> : <select name="text" id="langue"><option value="FR">Français</option><option value="EN">English</option></select></br></br></p>';
+	$vSQL = "SELECT nom, langue FROM Competences WHERE nom = $vCompt AND langue = $vLang";
+	$vQuery = pg_query($vCon,$vSQL);
+	if(pg_fetch_query($vQuery, NULL, PGSQL_ASSOC) == NULL){
+		$vSQL = "INSERT INTO Competences(nom,langue) VALUES ($vCompt,$vLang)";
+		pg_query($vCon,$vSQL);
 	}
-	echo '<p></br><a href="insert7.php">Continuer</a></p>';
-	echo '<p><a href="insert5.php">Annuler</a></p>';
 
+	
+	//-> récuperer l'id du candidat !!!
+
+	$vID = $_SESSION['id'];
+	
+	$vSQL = "SELECT id, nom, langue FROM Posseder_Competence WHERE nom = $vCompt AND langue = $vLang";
+	$vQuery = pg_query($vCon,$vSQL);
+	if(pg_fetch_query($vQuery, NULL, PGSQL_ASSOC) == NULL){
+		$vSQL = "INSERT INTO Posseder_Competence(id_candidat,nom,langue) VALUES ($vID,$vCompt,$vLang)";
+		pg_query($vCon,$vSQL);
+	}
+
+	echo "Voulez vous ajouter d'autres compétence ?";
+	echo '<p><a href="insert5.php">Ajouter une autre compétence</a></p>';
+	echo '</br></br>';
+	echo "Continuez ?";
+	echo '<p><a href="insert7.php">Ajouter des formations</a></p>';
 
 ?>
 <hr/>

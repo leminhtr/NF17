@@ -156,13 +156,12 @@ Proj(Individu, id_individu) IN Proj(Candidats, id_candidat) UNION Proj(Referents
  */
 
 CREATE TABLE CV(
-	id_CV SERIAL,
+	id_CV SERIAL PRIMARY KEY,
       candidat INTEGER REFERENCES Candidats(id_candidat),
       statut VARCHAR(12),
       date_creation DATE NOT NULL,
       date_maj DATE NOT NULL,
-      CHECK (statut IN ('desactive','active','confidentiel')),
-      PRIMARY KEY (id_CV)
+      CHECK (statut IN ('desactive','active','confidentiel'))
 );
 /*modification de la table car une clé étrangère ne peut pas être clé primaire à elle seule*/
 
@@ -213,7 +212,7 @@ CREATE TABLE Parler_Langue(
 	id_candidat INTEGER REFERENCES Candidats(id_candidat),
 	id_langue INTEGER,
 	niveau_langue CHAR(2),
-	CHECK (niveau_langue IN ('A1','A2','B1','B2','C1','C2')),
+	CHECK (niveau_langue IN ('A0','A1','A2','B1','B2','C1','C2')),
 	FOREIGN KEY (id_langue) REFERENCES Langues(id),
 	PRIMARY KEY( id_candidat,id_langue)
 );

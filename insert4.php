@@ -1,7 +1,9 @@
+<?php session_start(); ?> //Création d'une session pour pouvoir garder l'id tout le long de l'inscription
+
 <html>
 <?php
 include 'mise_en_page.php';
-?>
+             ?>
   <h1>Etape 2 : donnez vos données principales ainsi que celles de votre CV</h1>
 
 
@@ -32,48 +34,41 @@ include 'mise_en_page.php';
 	
 
  /* Insertions*/
+	$vSql1 = "INSERT INTO Individus (nom, prenom, mail) VALUES ('$vnom', '$vprenom', '$vemail')";
+	$vQuery=pg_query($vConn, $vSql1);
+	
 
-	$req = $bdd->prepare('INSERT INTO Individus (nom, prenom, mail) VALUES (:nom, :prenom, :mail)');
-	$req->execute(array( /*ERREUR A CETTE LIGNE*/
-	'nom' => $vnom,
-	'prenom' => $vprenom,
-	'mail' => $vemail
-    ));
+	$vSql2 = "SELECT id_individu FROM Individus WHERE mail = $vemail";
+	$vQuery2=pg_query($vConn, $vSql2);
+	$vResult = pg_fetch_array($vQuery2);
+	$vid_individu = $vResult[id_individu];
 
-	$vid_individu = "SELECT id_individu FROM Individus WHERE mail = $vemail";
 	$identifiant = $vnom.$vprenom.$vid_individu;/*IL FAUT : fonction vérifiant l'unicité*/
+	
+	$vSql3 = "INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type, URL_web, type_web) VALUES ('$vid_individu', '$identifiant', '$vMDP', '$vtel', '$vtypnum', '$vURL', '$vtypweb')";
+	$vQuery3=pg_query($vConn, $vSql3);
+	
+	$vSql4 = "INSERT INTO CV (candidat, statut, date_creation, date_maj) VALUES ('$vid_individu', '$sstatut', SYSDATE(), SYSDATE())";
+	$vQuery4=pg_query($vConn, $vSql4);
 
-	$req = $bdd->prepare('INSERT INTO Candidats (id_candidat, identifiant, mot_de_passe, telephone, telephone_type, URL_web, type_web) VALUES (:id_candidat, :identifiant, :mot_de_passe, :telephone, :telephone_type, :URL_web, :type_web)');
-	$req->execute(array(
-	'id_candidat' => $vid_individu,
-	'identifiant' => $identifiant, 
-	'mot_de_passe' => $vMDP,
-	'telephone' => $vtel,
-	'telephone_type' => $vtypnum,
-	'URL_web' => $vURL,
-	'type_web' => $vtypweb
-    ));
+	$vSql5 = "SELECT id_CV FROM CV WHERE candidat = $vid_individu";
+	$vQuery5=pg_query($vConn, $vSql5);
+	$vResult2 = pg_fetch_array($vQuery5);
+	$vid_CV = $vResult2[id_CV];
 
-	$req = $bdd->prepare('INSERT INTO CV (candidat, statut, date_creation, date_maj) VALUES (:candidat, :statut, :date_creation, :date_maj)');
-	$req->execute(array(
-	'candidat' => $vid_individu,
-	'statut' => $sstatut,
-	'date_creation' => CURDATE(),
-	'date_maj' => $date
-    ));
 
-	$vid_CV = "SELECT id_CV FROM CV WHERE candidat = $vid_individu";
+	$vSql6 = "INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES ($vid_CV, $vlangue1, $vtitre1, $vinfo1)";
+	$vQuery6=pg_query($vConn, $vSql6);
 
-	$req = $bdd->prepare('INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES (:id_CV, :langue, :titre, :infos_complementaires)');
-	$req->execute(array(
-	'id_CV' => $vid_CV,
-	'langue' => $vlangue1,
-	'titre' => $vtitre1,
-	'infos_complementaires' => $vinfo1 /*IL FAUT VERIFIER QUE CA BIEN ETE RENTREE*/
-    ));
+	$vSql7 = "INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES ($vid_CV, $vlangue2, $vtitre2, $vinfo2)";
+	$vQuery7=pg_query($vConn, $vSql7);
+
 
 /*IF FAUT VERIFIER SI IL Y A UN DEUXIEME DESCRIPTION LANGUE DE RENTREE!!!!!!!!!*/
 
+	$_SESSION['id'] = $vid_CV; //On garde l'email pour la suite de l'inscrption
+	$_SESSION['i'] = 1; //Variable qui pourra itérer le nombre de Compétence
+	$_SESSION['j'] = 1; //Variable qui pourra itérer le nombre de Formation
 
 
 ?>

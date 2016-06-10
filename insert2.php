@@ -1,7 +1,7 @@
 <html>
 <?php
 include 'mise_en_page.php';
-?>
+             ?>
   <h1>Vérifions d'abord que vous n'existez pas dans notre base</h1>
 <?php
 	include "connect_projet.php";
@@ -22,6 +22,7 @@ include 'mise_en_page.php';
 	if ($vverif == 0) {
 		echo "Vous n'avez jamais créé de CV chez nous. Créez-le maintenant!";
 		echo '<p><a href="insert3.php">Continuer</a></p>';}
+
 
 ?>
 

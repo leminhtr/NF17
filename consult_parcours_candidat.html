@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Consulter le parcours d'un candidat</title>
+    <title>INSCRIPTION A UN SITE DE CANDIDATURE</title>
 </head>
 <body>
 
@@ -20,11 +19,15 @@
         <p>Espace Candidats</p>
         </br>
         <li><a href="insert.php">Ajouter votre CV</a></li>
-        <li><a href="check.php">Modifier votre CV</a></li>
+        <li><a href="identifiant_Candidat1.php">Modifier votre CV</a></li>
         </br>
-        <p>Espace Référents</p>
+        <p>Espace Entreprise</p>
         </br>
         <li><a href="select.html">Consulter les CV</a></li>
+        <br>
+        <p>Espace Référents</p>
+        </br>
+        <li><a href="consult_referent.html">Consulter vos candidats</a></li>
     </ul>
 </nav>
 
@@ -38,6 +41,8 @@
         margin-top:40px;*/
     }
 </style>
+
+
 
 <h1>Choisissez le candidat dont vous souhaitez consulter le parcours</h1>
 
@@ -55,10 +60,21 @@
             <th>Prénom</th>
             <td><input type="text" name="prenom"></td>
         </tr>
-    </table>
+        </tr>
+        <tr>
+            <th rowspan="2">Langue</th>
+            <td><input type="radio" value='FR' name="langue" checked>Français</td>
+        </tr>
+        <tr>
+            <td><input type="radio" value='EN' name="langue">English</td>
+        </tr>
 
-<br>
-<input type="submit" value="Valider">
+
+
+<tr></tr>
+<tr><td><input type="submit" value="Valider"></td></tr>
+
+    </table>
 </form>
 
 

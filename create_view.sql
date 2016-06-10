@@ -45,12 +45,6 @@ CREATE OR REPLACE VIEW candidats_experiences_pro AS
   ORDER BY (c.identifiant)
 ;
 
-SELECT cep.fonction, cep.date_debut, cep.date_fin, cep.nom_entreprise, es.sa_fr, es.sa_en
-FROM candidats_experiences_pro cep
-JOIN entreprises_secteurs es ON cep.nom_entreprise=es.nom_entreprise
-WHERE cep.id_candidat=''
-;
-
 
 
 
