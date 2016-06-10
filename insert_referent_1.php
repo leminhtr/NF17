@@ -14,7 +14,7 @@ include 'mise_en_page.html';
 	$vConn = fConnect();
 
 	/*Recherche de la liste des référents existant*/
-	$vSql ="SELECT R.id_referent, I.nom, I.prenom R.situation_pro, R.employeur FROM Referents R, Individus I WHERE R.id_referent = I.id_individu;";
+	$vSql ="SELECT R.id_referent, I.nom, I.prenom, R.situation_pro, R.employeur FROM Referents R, Individus I WHERE R.id_referent = I.id_individu;";
 	$vQuery=pg_query($vConn, $vSql);
 	while ($vResult = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
 		echo "<tr>";

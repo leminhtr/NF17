@@ -16,10 +16,8 @@ include 'mise_en_page.html';
 
 	/*Récupération des variables passées en formulaire*/
 	$sstatut=$_POST['statut'];
-	$vlangue1=$_POST['langue1'];
 	$vtitre1=$_POST['titre1'];
 	$vinfo1=$_POST['infos_complementaires1'];
-	$vlangue2=$_POST['langue2'];
 	$vtitre2=$_POST['titre2'];
 	$vinfo2=$_POST['infos_complementaires2'];
 
@@ -37,31 +35,12 @@ include 'mise_en_page.html';
 	$vQuery1=pg_query($vConn, $vSql);
 	$vResult = pg_fetch_array($vQuery1,null, PGSQL_ASSOC);
 	$vid_CV = $vResult[id_cv];
-/*
-?>
-	<table border="1">
-	<tr><th>Id CV</th><th>candidat</th><th>statut</th></tr>
-<?php
-	//Mise dans un tableau de l'ensemble de CV existant : requête de vérification
-	$vSql2 ="SELECT id_cv, candidat, statut FROM CV;";
-	$vQuery=pg_query($vConn, $vSql2);
-	while ($vResult2 = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
-		echo "<tr>";
-
-		echo "<td>$vResult2[0]</td>";
-		echo "<td>$vResult2[1]</td>";
-		echo "<td>$vResult2[2]</td>";
-	
-		echo "</tr>";}
-	*/
-	
-
 
 	/*requête d'insert permettant de rajouter dans la base de donnée les informations en anglais et en français. */
-	$vSql = "INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES ('$vid_CV', '$vlangue1', '$vtitre1', '$vinfo1')";
+	$vSql = "INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES ('$vid_CV', 'FR', '$vtitre1', '$vinfo1')";
 	$vQuery2=pg_query($vConn, $vSql);
 
-	$vSql = "INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES ('$vid_CV', '$vlangue2', '$vtitre2', '$vinfo2')";
+	$vSql = "INSERT INTO CV_Traduit (id_CV, langue, titre, infos_complementaires) VALUES ('$vid_CV', 'EN', '$vtitre2', '$vinfo2')";
 	$vQuery3=pg_query($vConn, $vSql);
 	
 	
@@ -75,7 +54,7 @@ include 'mise_en_page.html';
 
 
 	
-/*IF FAUT VERIFIER SI IL Y A UN DEUXIEME DESCRIPTION LANGUE DE RENTREE!!!!!!!!!*/
+
 
 ?>
 

@@ -16,30 +16,26 @@ include 'mise_en_page.html';
 		<option value='confidentiel'>Confidentiel (seul votre referent peut le voir)</option>
 	</select>
 	</br></br>
-
+	
 	<h3> Ici veuillez remplir les intitulés que vous souhaitez faire apparaître sur votre CV </h3></br></br>
-	<select name="langue1" id="langue1">
-		<option value='FR'>Français </option>
-		<option value='EN'>Anglais</option> 
-	</select>
+
+	</br></br>
+	<h4> FRANCAIS </h4>
+	</br>
+	<label>Le titre que vous souhaitez donner à votre CV : </label><input type="text" name="titre1" required/>
 	</br></br>
 
-	<label>Le titre que vous souhaitez donner à votre CV</label> : <input type="text" name="titre1" required/>
+	<label>Informations complémentaires : </br></label><textarea name="infos_complementaires1" id="infos_complementaires" rows="10" 	cols="50"> </textarea>
 	</br></br>
 
-	<label>Informations complémentaires</br></label> : <textarea name="infos_complementaires1" id="infos_complementaires" rows="10" 	cols="50"> </textarea>
+
+	</br></br>
+	<h4> ANGLAIS </h4>
+	</br>
+	<label>Le titre que vous souhaitez donner à votre CV : </label><input type="text" name="titre2" />
 	</br></br>
 
-	<select name="langue2" id="langue1">
-		<option value='FR' >Français </option>
-		<option value='EN' >Anglais</option> 
-	</select>
-	</br></br>
-
-	<label>Le titre que vous souhaitez donner à votre CV</label> : <input type="text" name="titre2" />
-	</br></br>
-
-	<label>Informations complémentaires</br></label> : <textarea name="infos_complementaires2" id="infos_complementaires" rows="10" 	cols="50"> </textarea>
+	<label>Informations complémentaires : </br></label><textarea name="infos_complementaires2" id="infos_complementaires" rows="10" 	cols="50"> </textarea>
 
 
        	<input type="submit" value="valider" />

@@ -26,25 +26,90 @@ include 'mise_en_page.html';
 	$vResult = pg_fetch_array($vQuery);
 	echo "Voici le nom, prénom et email du référent que vous avez choisit : $vResult[nom] $vResult[prenom] : $vResult[mail] ";
 
-	/* //affichage des liaisons existante entre candidat et référent
-	$vSql ="SELECT id_candidat, id_referent FROM Posseder_Referent;";
+?>
+	<h2>Petit récapitulatif des données que vous avez déjà entrées</h2>
+	<h3>Présentation du CV : Version en français</h3>
+	<table border="1">
+	<tr><th>Statut du CV</th><th>Titre</th><th>Description</th></tr>
+
+<?php
+
+	$vSql ="SELECT CV.statut, T.titre, T.infos_complementaires FROM CV CV, CV_Traduit T WHERE CV.candidat = '$vid_individu' AND CV.id_CV = T.id_CV AND T.langue='FR';";
 	$vQuery=pg_query($vConn, $vSql);
 	while ($vResult = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
-		echo "<tr>";
+	echo "<tr>";
 
-		echo "<td>$vResult[0]</td>";
-		echo "<td>$vResult[1]</td>";
+	echo "<td>$vResult[0]</td>";
+	echo "<td>$vResult[1]</td>";
+	echo "<td>$vResult[2]</td>";
+	echo "</tr>";}
 
-		echo "</tr>";}*/
+?>
+	<h3>Présentation du CV : Version en anglais</h3>
+	<table border="1">
+	<tr><th>Statut du CV</th><th>Titre</th><th>Description</th></tr>
+
+<?php
+
+	$vSql ="SELECT CV.statut, T.titre, T.infos_complementaires FROM CV CV, CV_Traduit T WHERE CV.candidat = '$vid_individu' AND CV.id_CV = T.id_CV AND T.langue='EN';";
+	$vQuery=pg_query($vConn, $vSql);
+	while ($vResult = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
+	echo "<tr>";
+
+	echo "<td>$vResult[0]</td>";
+	echo "<td>$vResult[1]</td>";
+	echo "<td>$vResult[2]</td>";
+	echo "</tr>";}
+
+
+?>
+	<h3>Informations personnelles</h3>
+	<table border="1">
+	<tr><th>Identifiant</th><th>Nom</th><th>Prenom</th><th>Mail</th><th>Mot de Passe</th><th>Telephone</th><th>URL</th></tr>
+
+<?php
+	$vSql ="SELECT I.id_individu, I.nom, I.prenom, I.mail, C.mot_de_passe, C.telephone, C.URL_web FROM Candidats C, Individus I WHERE C.id_candidat = I.id_individu AND C.id_candidat = '$vid_individu';";
+	$vQuery=pg_query($vConn, $vSql);
+	while ($vResult = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
+	echo "<tr>";
+
+	echo "<td>$vResult[0]</td>";
+	echo "<td>$vResult[1]</td>";
+	echo "<td>$vResult[2]</td>";
+	echo "<td>$vResult[3]</td>";
+	echo "<td>$vResult[4]</td>";
+	echo "<td>$vResult[5]</td>";
+	echo "<td>$vResult[6]</td>";
+	echo "</tr>";}
+
+
+?>
+	<h3>Niveaux de langue</h3>
+	<table border="1">
+	<tr><th>Langue</th><th>Langue</th><th>Niveau</th></tr>
+
+<?php
+
+	$vSql ="SELECT L.nom_fr, L.nom_en, P.niveau_langue FROM Parler_Langue P, Langues L WHERE  '$vid_individu'= P.id_candidat AND P.id_langue = L.id;";
+	$vQuery=pg_query($vConn, $vSql);
+	while ($vResult = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
+	echo "<tr>";
+
+	echo "<td>$vResult[0]</td>";
+	echo "<td>$vResult[1]</td>";
+	echo "<td>$vResult[2]</td>";
+	echo "</tr>";}
+
+
 
 	$_SESSION['i'] = 1; //Variable qui pourra itérer le nombre de Compétence dans les prochaines pages
 	$_SESSION['j'] = 1; //Variable qui pourra itérer le nombre de Formation dans les prochaines pages
 	$_SESSION['k'] = 1; //Variable qui pourra itérer le nombre d'experiences dans les prochaines pages
 	$_SESSION['l'] = 1; //Variable qui pourra itérer le nombre de poste assocition dans les prochaines pages
 	
-	echo '<p><a href="insert_competence_1.php">Continuer</a></p>';
-
 	
 
 ?>
+
+<p><a href="insert_competence_1.php">Continuer</a></p>
 
