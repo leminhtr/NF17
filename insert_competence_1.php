@@ -6,7 +6,7 @@ include 'mise_en_page.html';
 ?>
 <h1>Etape 3 de la création de votre CV : Compétence</h1>
   <p>Veuillez remplir les champs ci-dessous</p>
-  <form method= "post" action="insert6.php">
+  <form method= "post" action="insert_competence_2.php">
 	</br>
 	<?php 
 	echo 'Compétence n°';

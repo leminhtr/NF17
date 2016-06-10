@@ -1,3 +1,4 @@
+
 <html>
 <?php
 include 'mise_en_page.html';
@@ -34,3 +35,4 @@ include 'mise_en_page.html';
 	<input type="submit" value="valider" />
     	</p>
 </form>
+

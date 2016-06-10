@@ -1,3 +1,4 @@
+
 <?php session_start(); /*Permet de passer de page en page l'identifiant artificiel du candidat créant son CV*/?>
 
 <html>
@@ -63,3 +64,4 @@ include 'mise_en_page.html';
 </body>
 </html>
 	
+

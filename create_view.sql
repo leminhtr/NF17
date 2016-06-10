@@ -6,7 +6,7 @@ CREATE OR REPLACE VIEW individus_candidats AS
 ;
 
 CREATE OR REPLACE VIEW candidats_domaines AS
-  SELECT DISTINCT c.id_candidat, de.de_fr, de.de_en, f.domaine_etude
+  SELECT c.id_candidat, de.de_fr, de.de_en, f.domaine_etude
   FROM domaines_etudes de
   JOIN formations f ON de.id_de = f.domaine_etude
   JOIN suivre_formation sf ON f.id_formation = sf.id_formation
@@ -45,21 +45,6 @@ CREATE OR REPLACE VIEW candidats_experiences_pro AS
   ORDER BY (c.identifiant)
 ;
 
-CREATE OR REPLACE VIEW candidats_publications AS
-  SELECT c.id_candidat, p.titre, p.contenu, dp.date, dp.isbn
-  FROM candidats c
-  JOIN ecrire_publication ep ON c.id_candidat = ep.id_candidat
-  JOIN publications p ON ep.id_publication = p.id_pub
-  JOIN datepublication dp ON p.id_date_pub = dp.id_date_pub
-  ORDER BY (c.id_candidat)
-;
 
-CREATE OR REPLACE VIEW candidats_associations AS
-  SELECT c.id_candidat, pas.nom_asso, pat.description, pas.date_debut, pas .date_fin, s.statut_fr, s.statut_en, pat.langue
-  FROM candidats c
-  JOIN participer_association pa ON c.id_candidat = pa.id_candidat
-  JOIN postes_associations pas ON pa.id_asso = pas.id_asso
-  JOIN status s ON pas.statut = s.id_statut
-  JOIN postes_associations_traduits pat ON pas.id_asso = pat.id_asso
-  ORDER BY (c.id_candidat)
-;
+
+

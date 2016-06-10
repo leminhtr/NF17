@@ -85,8 +85,8 @@ COMMIT;
 BEGIN TRANSACTION;
 
 
-INSERT INTO Langues (nom_fr, nom_en) VALUES ('Francais','French');
-INSERT INTO Langues (nom_fr, nom_en) VALUES ('Angais','English');
+INSERT INTO Langues (nom_fr, nom_en) VALUES ('Français','French');
+INSERT INTO Langues (nom_fr, nom_en) VALUES ('Anglais','English');
 INSERT INTO Langues (nom_fr, nom_en) VALUES ('Espagnol','Spanish');
 INSERT INTO Langues (nom_fr, nom_en) VALUES ('Allemand','German');
 
@@ -139,9 +139,7 @@ INSERT INTO CV (candidat, statut, date_creation, date_maj) VALUES (6,'desactive'
 INSERT INTO CV (candidat, statut, date_creation, date_maj) VALUES (11,'active','2010-06-21',current_date);
 
 INSERT INTO CV_traduit (id_CV, langue, titre) VALUES (1,'FR','Recherche de stage');
-INSERT INTO CV_traduit (id_CV, langue, titre) VALUES (3,'FR','Recherche de stage');
 INSERT INTO CV_traduit (id_CV, langue, titre) VALUES (1,'EN','Searching for a job');
-INSERT INTO CV_traduit (id_CV, langue, titre) VALUES (3,'EN','Searching for a job');
 
 
 INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES (5,'Sport','FR');
@@ -154,7 +152,6 @@ INSERT INTO Posseder_Competence (id_candidat, nom, langue) VALUES (6,'base de do
 INSERT INTO Suivre_Formation (id_candidat, id_formation) VALUES (5,1);
 INSERT INTO Suivre_Formation (id_candidat, id_formation) VALUES (5,2);
 INSERT INTO Suivre_Formation (id_candidat, id_formation) VALUES (5,3);
-INSERT INTO Suivre_Formation (id_candidat, id_formation) VALUES (6,1);
 
 
 INSERT INTO Avoir_Experience (id_candidat, id_exp_pro) VALUES (5,1);
@@ -167,8 +164,6 @@ INSERT INTO Participer_Association (id_candidat, id_asso) VALUES (5,1);
 INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES (5,1,'C2');
 INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES (5,2,'B2');
 INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES (5,3,'B1');
-INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES (6,1,'B1');
-INSERT INTO Parler_Langue (id_candidat, id_langue, niveau_langue) VALUES (6,4,'B1');
 
 
 

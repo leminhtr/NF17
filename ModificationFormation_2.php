@@ -1,121 +1,116 @@
 <html>
-   <head>
-       <title>Bienvenu ici les informations CV </title>
-	<meta charset = "UTF-8">
-        <style>
-				nav{
-				    float:left;
-				    width:25%;
-				    height:100%;
-				    border-right:1px dashed #CCC;
-				    /*padding:20px;
-				    margin-top:40px;*/
-				}
-				</style>
-  </head>
-  <body>
-	<nav>
-	    <ul>
-		<li><a href="page1_projet.php">Accueil</a></li>
-		</br>
-		<p>Espace Candidats</p>
-		</br>
-		<li><a href="insert.php">Ajouter votre CV</a></li>
-		<li><a href="check.php">Modifier votre CV</a></li>
-		</br>
-		<p>Espace R®¶f®¶rents</p>
-		</br>
-		<li><a href="select.php">Consulter les CV</a></li>
-	    </ul>
-	</nav>
-	
-	    <hr/>
-     <a href="page1_projet.php"> Retourner ®§ l'acceuil ! </a>  <br>
+     <?php
+ 	    include 'mise_en_page.html';
+     ?>
+      <body> ‚ÄÅ‚ÄÅ
+	 <hr/>
+         <a href="page1_projet.php"> Retourner a l'accueil ! </a>  <br>
   
         <?php  
         	
              $email=$_POST["email"];             
-	           $datedebut=$_POST["datedebut"];
-	           $datefin=$_POST["datefin"];
-	           $etablissement=$_POST["etablissement"];
-	           $pays=$_POST["pays"];
-	           $ville=$_POST["ville"];
-	           
+	     $datedebut=$_POST["datedebut"];
+	     $datefin=$_POST["datefin"];
+	     $etablissement=$_POST["etablissement"];
+	     $pays=$_POST["pays"];
+	     $ville=$_POST["ville"];
+
+             $titre=$_POST["titre"];
+             $type=$_POST["type"];
+             $langue=$_POST["langue"];
+
              if (empty($email)){
                  die("Donner votre e-mail,s'il vous plait !");
              }
              include "connect_projet.php";
-	           $vConn = fConnect();          
-					   if ($vConn){
-					        echo('Successfully Connected: ');
-					    } else {
-						      echo('You Done Goofed');
-					    }
+	     $vConn = fConnect();          
+	     if (!($vConn)){		  
+		 echo('You Done Goofed');
+	     }
+             
+             $vSql="SELECT * FROM Individus"; 
+	     $vQuery=pg_query($vConn, $vSql);
+             $idIndividu=0;
+	     while ($vResult = pg_fetch_array($vQuery) and $idIndividu==0 ) {
+			if ($vResult[mail] == $email){
+                               $idIndividu = $vResult[id_individu];				
+			}
+	     }
 
-              if(!empty($datedebut)){
-		      			 $query_str = "update Individus,Candidats,Formations,Suivre_Formation
-		      			  set date_debut='{$datedebut}' 
-		      			  where mail='{$email}' 
-		      			  and Candidats.id_candidat=Individus.id_individu 
-		      			  and Suivre_Formation.id_candidat=Candidats.id_candidat
-		      			  and Suivre_Formation.id_formation=Formations.id_formation";   
-	               $query = pg_query($query_str);     
-	                if(!($query)){			         
-                      die ("La modification: non valable");				   
-                  }
-              }  
-             
-              if(!empty($datefin)){
-		      			 $query_str = "update Individus,Candidats,Formations,Suivre_Formation
-		      			  set date_fin='{$datefin}' 
-		      			  where mail='{$email}' 
-		      			  and Candidats.id_candidat=Individus.id_individu 
-		      			  and Suivre_Formation.id_candidat=Candidats.id_candidat
-		      			  and Suivre_Formation.id_formation=Formations.id_formation";   
-	               $query = pg_query($query_str);    
-	               if(!($query)){			         
-                      die ("La modification: non valable");				   
-                 }   
+             $vSql="SELECT * FROM Suivre_Formation where id_candidat='$idIndividu'"; 
+	     $vQuery=pg_query($vConn, $vSql);
+             $idformation=0;	     
+             while ($vResult = pg_fetch_array($vQuery)) {          
+                   $idformation=$vResult[id_formation];                       
+             }
+
+             if(!empty($datedebut)){
+		 $query_str = "update Formations set date_debut='$datedebut' where id_formation='$idformation' ";   			
+                 $query = pg_query($query_str);   
+	            if(!($query)){				         
+                     die ("La modification: non valable");		   
+                  }		         
              }  
-             
-              if(!empty($etablissement)){
-		      			 $query_str = "update Individus,Candidats,Formations,Suivre_Formation
-		      			  set etablissement='{$etablissement}' 
-		      			  where mail='{$email}' 
-		      			  and Candidats.id_candidat=Individus.id_individu 
-		      			  and Suivre_Formation.id_candidat=Candidats.id_candidat
-		      			  and Suivre_Formation.id_formation=Formations.id_formation";   
-	               $query = pg_query($query_str);  	              
-	               if(!($query)){			         
-                      die ("La modification: non valable");				   
-                 }   
+
+             if(!empty($datefin)){
+		 $query_str = "update Formations set date_fin='$datefin' where id_formation='$idformation' ";   			
+                 $query = pg_query($query_str);   
+	            if(!($query)){				         
+                     die ("La modification: non valable");		   
+                  }		         
              }  
-             
-              if(!empty($pays)){
-		      			 $query_str = "update Individus,Candidats,Formations,Suivre_Formation
-		      			  set pays='{$pays}' 
-		      			  where mail='{$email}' 
-		      			  and Candidats.id_candidat=Individus.id_individu 
-		      			  and Suivre_Formation.id_candidat=Candidats.id_candidat
-		      			  and Suivre_Formation.id_formation=Formations.id_formation";   
-	               $query = pg_query($query_str);	              
-	                if(!($query)){			         
-                      die ("La modification: non valable");				   
-                  }     		        
+
+             if(!empty($etablissement)){
+		 $query_str = "update Formations set etablissement='$etablissement' where id_formation='$idformation' "; 	
+                 $query = pg_query($query_str);   
+	            if(!($query)){				         
+                     die ("La modification: non valable");		   
+                  }		         
              }  
-               
-              if(!empty($ville)){
-		      			 $query_str = "update Individus,Candidats,Formations,Suivre_Formation
-		      			  set ville='{$ville}' 
-		      			  where mail='{$email}' 
-		      			  and Candidats.id_candidat=Individus.id_individu 
-		      			  and Suivre_Formation.id_candidat=Candidats.id_candidat
-		      			  and Suivre_Formation.id_formation=Formations.id_formation";   
-	               $query = pg_query($query_str);    
-	               if(!($query)){			         
-                      die ("La modification: non valable");				   
-                 }   
+
+
+             if(!empty($pays)){
+		 $query_str = "update Formations set pays='$pays' where id_formation='$idformation' "; 	
+                 $query = pg_query($query_str);   
+	            if(!($query)){				         
+                     die ("La modification: non valable");		   
+                  }		         
              }  
+            
+              
+             if(!empty($ville)){
+		 $query_str = "update Formations set ville='$ville' where id_formation='$idformation' "; 	
+                 $query = pg_query($query_str);   
+	            if(!($query)){				         
+                     die ("La modification: non valable");		   
+                  }		         
+             }  
+
+    
+             if(!empty($titre)){
+		 $query_str = "update Formations_Traduites set titre='$titre' where id_formation='$idformation' "; 	
+                 $query = pg_query($query_str);   
+	            if(!($query)){				         
+                     die ("La modification: non valable");		   
+                  }		         
+             }  
+
+            if(!empty($type)){
+		 $query_str = "update Formations_Traduites set type='$type' where id_formation='$idformation' "; 	
+                 $query = pg_query($query_str);   
+	            if(!($query)){				         
+                     die ("La modification: non valable");		   
+                  }		         
+             }  
+
+             if(!empty($langue)){
+		 $query_str = "update Formations_Traduites set langue='$langue' where id_formation='$idformation' "; 	
+                 $query = pg_query($query_str);   
+	            if(!($query)){				         
+                     die ("La modification: non valable");		   
+                  }		         
+             }  
+
              echo ("Vous avez fait la modification: !!!");
           ?>         
     
