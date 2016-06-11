@@ -109,7 +109,8 @@ include 'mise_en_page.html';
 	$_SESSION['i'] = 1; //Variable qui pourra itérer le nombre de Compétence dans les prochaines pages
 	$_SESSION['j'] = 1; //Variable qui pourra itérer le nombre de Formation dans les prochaines pages
 	$_SESSION['k'] = 1; //Variable qui pourra itérer le nombre d'experiences dans les prochaines pages
-	$_SESSION['l'] = 1; //Variable qui pourra itérer le nombre de poste assocition dans les prochaines pages
+	$_SESSION['l'] = 1; //Variable qui pourra itérer le nombre de poste associations dans les prochaines pages
+	$_SESSION['m'] = 1; //Variable qui pourra itérer le nombre de publications dans les prochaines pages
 	
 	
 

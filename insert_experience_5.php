@@ -3,7 +3,7 @@
 <?php
 include 'mise_en_page.html';
 ?>
-<h1>Etape 5 de la création de votre CV : Expérience porffessionnelle</h1>
+<h1>Etape 6 de la création de votre CV : Expérience proffessionnelle</h1>
   <p>Veuillez répondre à la question pour continuez</p>
 <?php
 	include 'connect_projet.php';

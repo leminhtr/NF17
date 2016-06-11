@@ -3,7 +3,7 @@
 <?php
 include 'mise_en_page.html';
 ?>
-<h1>Etape 6 de la création de votre CV : Associations</h1>
+<h1>Etape 7 de la création de votre CV : Associations</h1>
   <p>Veuillez remplir les champs ci-dessous</p>
 	<?php 
 	echo 'Association n°';
@@ -34,9 +34,9 @@ include 'mise_en_page.html';
 	</br>
 	<label>Nom de l'association</label> : <input type="text" name="nom" require/>
 	</br>
-	<label>Date de début</label> : <input type="date" name="date_debut" require/>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/>
 	</br>
-	<label>Date de fin</label> : <input type="date" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
 	</br>
 	</br>
 	<input type="submit" value="valider" />

@@ -3,7 +3,7 @@
 <?php
 include 'mise_en_page.html';
 ?>
-<h1>Etape 5 de la création de votre CV : Expérience proffessionnelle</h1>
+<h1>Etape 6 de la création de votre CV : Expérience proffessionnelle</h1>
   <p>Veuillez remplir les champs ci-dessous</p>
 	<?php 
 	echo 'Experience proffessionnelle n°';
@@ -32,9 +32,9 @@ include 'mise_en_page.html';
 		<option value='EN'>English</option></select>
 	</br>
 	</br>
-	<label>Date de début</label> : <input type="date" name="date_debut" require/>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/>
 	</br>
-	<label>Date de fin</label> : <input type="date" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
 	</br>
 	<label>Entreprise</label> : <input type="text" name="entreprise" require/>
 	</br>

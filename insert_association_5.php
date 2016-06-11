@@ -3,7 +3,7 @@
 <?php
 include 'mise_en_page.html';
 ?>
-<h1>Etape 6 de la création de votre CV : Associations</h1>
+<h1>Etape 7 de la création de votre CV : Associations</h1>
   <p>Veuillez répondre à la question pour continuez</p>
 <?php
 	include 'connect_projet.php';
@@ -20,25 +20,25 @@ include 'mise_en_page.html';
 		$vQuery = pg_query($vCon,$vSQL);
 	}
 	
-	$vResult = pg_fetch_query($vQuery);
+	$vResult = pg_fetch_array($vQuery);
 
 	$vNom = $_POST['nom']
 	$vdate_d = $_POST['date_debut'];
 	$vdate_f = $_POST['date_fin'];
-	$vId_statut = $vResult['id_statut'];
+	$vId_statut = $vResult[id_statut];
 
-	$vSQL = "SELECT * FROM Postes_Associations WHERE date_debut = '$vdate_d' AND date_fin = '$vdate_f' AND nom_asso = '$vNom';"
+	$vSQL = "SELECT * FROM Postes_Associations WHERE date_debut = '$vdate_d' AND date_fin = '$vdate_f' AND nom_asso = '$vNom';";
 	$vQuery = pg_query($vCon,$vSQL);
 	if(pg_fetch_array($vQuery, NULL, PGSQL_ASSOC) == NULL){
-		$vSQL2 = "INSERT INTO Postes_Associations(nom_asso, date_debut, date_fin, statut) VALUES ('$vNom','$vdate_d','$vdate_f', '$Id_statut');";
+		$vSQL2 = "INSERT INTO Postes_Associations(nom_asso, date_debut, date_fin, statut) VALUES ('$vNom','$vdate_d','$vdate_f', '$vId_statut');";
 		pg_query($vCon,$vSQL2);
 		$vQuery = pg_query($vCon,$vSQL);
 	}
 
 	
-	$vResult = pg_fetch_query($vQuery)	
+	$vResult = pg_fetch_array($vQuery);
 
-	$vId_asso = $vResult['id_asso']
+	$vId_asso = $vResult[id_asso];
 	
 	$vDesc1 = $_POST['description1'];
 	$vlangue1 = $_POST['langue1'];
@@ -50,7 +50,7 @@ include 'mise_en_page.html';
 	}
 	
 
-	$vID = $_SESSION['id'];
+	$vID = $_SESSION['id_individu'];
 
 	$vSQL = "SELECT * FROM Participer_Association WHERE id_candidat = '$vID' AND id_asso = '$vId_asso';";
 	$vQuery = pg_query($vCon,$vSQL);
@@ -63,8 +63,8 @@ include 'mise_en_page.html';
 	//echo '<p><a href="insert_experience_1.php">Passer à la suite</a></p>';
 	echo '</br></br>';
 	echo "Si oui, est-elle traduite ?";
-	echo '<p><a href="insert_association_1.php">oui</a></p>';
-	echo '<p><a href="insert_association_2.php">non</a></p>';
+	echo '<p><a href="insert_association_2.php">oui</a></p>';
+	echo '<p><a href="insert_association_3.php">non</a></p>';
 
 ?>
 

@@ -3,7 +3,7 @@
 <?php
 include 'mise_en_page.html';
 ?>
-<h1>Etape 4 de la création de votre CV : Formation</h1>
+<h1>Etape 5 de la création de votre CV : Formation</h1>
   <p>Veuillez répondre à la question pour continuez</p>
 <?php
 	include 'connect_projet.php';
@@ -41,7 +41,7 @@ include 'mise_en_page.html';
 
 	$vResult = pg_fetch_array($vQuery);	
 
-	$vId_formation = $vResult['id_formation'];
+	$vId_formation = $vResult[id_formation];
 	
 	$vtitre1 = $_POST['titre1'];
 	$vtype1 = $_POST['type1'];
