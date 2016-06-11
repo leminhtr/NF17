@@ -51,7 +51,7 @@ include 'mise_en_page.html';
 	</br>
 	<label>Pays</label> : <input type="text" name="pays" />
 	</br>
-	<label>Ville</label> : <input type="text" name="Ville" />
+	<label>Ville</label> : <input type="text" name="ville" />
 	</br>
 	</br>
 	<input type="submit" value="valider" />

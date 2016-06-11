@@ -40,7 +40,7 @@ include 'mise_en_page.html';
 	
 	$vResult = pg_fetch_array($vQuery);	
 
-	$vId_formation = $vResult['id_formation'];
+	$vId_formation = $vResult[id_formation];
 	
 	$vtitre1 = $_POST['titre1'];
 	$vtype1 = $_POST['type1'];

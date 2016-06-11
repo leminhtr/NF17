@@ -11,7 +11,7 @@ include 'mise_en_page.html';
 	$vL = $_SESSION['l'];
 	$_SESSION['l'] = $vL+1;
 	?>
-<form method= "post" action="insert_association_4.php">
+<form method= "post" action="insert_association_5.php">
 	</br>
 	</br>
 	<label>Statut</label>

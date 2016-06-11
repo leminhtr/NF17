@@ -16,13 +16,11 @@ include 'mise_en_page.html';
 	$vQuery = pg_query($vCon,$vSQL);
 	if(pg_fetch_array($vQuery, NULL, PGSQL_ASSOC) == NULL){
 		$vSQL2 = "INSERT INTO Domaines_Etudes(DE_fr,DE_en) VALUES ('$vDE_fr','$vDE_en');";
-		echo pg_query($vCon,$vSQL2);
 		$vQuery = pg_query($vCon,$vSQL);
 	}
 	
 	$vResult = pg_fetch_array($vQuery);
 	
-
 	$vdate_d = $_POST['date_debut'];
 	$vdate_f = $_POST['date_fin'];
 	$vEtab = $_POST['etablissement'];
@@ -39,7 +37,7 @@ include 'mise_en_page.html';
 	}
 
 
-	$vResult = pg_fetch_array($vQuery);	
+	$vResult = pg_fetch_array($vQuery);
 
 	$vId_formation = $vResult[id_formation];
 	
