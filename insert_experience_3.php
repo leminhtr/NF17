@@ -32,9 +32,9 @@ include 'mise_en_page.html';
 		<option value='EN'>English</option></select>
 	</br>
 	</br>
-	<label>Date de début</label> : <input type="text" name="date_debut" require/>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/> <label>(YYYY-MM-DD)</label>
 	</br>
-	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/> <label>(YYYY-MM-DD)</label>
 	</br>
 	<label>Entreprise</label> : <input type="text" name="entreprise" require/>
 	</br>

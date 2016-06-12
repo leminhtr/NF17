@@ -21,31 +21,19 @@ include 'mise_en_page.html';
 	<label>Nom anglais</label> : <input type="text" name="SE_en" require/>
 	</br>
 	</br>
-	<label>Expérience proffessionnelle dans la langue d'origine<label>
-	</br>
-	<label>Titre du poste</label> : <input type="text" name="titre1" require/>
+	<label>Expérience proffessionnelle en Français<label>
 	</br>
 	<label>Fonction</label> : <input type="text" name="fonct1" require/>
 	</br>
-	<label>Langue</label> : <select name="langue1" id="langue1">
-		<option value='FR'>Français</option>
-		<option value='EN'>English</option></select>
 	</br>
-	</br>
-	<label>Expérience proffessionnelle dans la langue de traduction<label>
-	</br>
-	<label>Titre du poste</label> : <input type="text" name="titre2" require/>
+	<label>Expérience proffessionnelle en Anglais<label>
 	</br>
 	<label>Fonction</label> : <input type="text" name="fonct2" require/>
 	</br>
-	<label>Langue</label> : <select name="langue2" id="langue2">
-		<option value='FR'>Français</option>
-		<option value='EN'>English</option></select>
 	</br>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/> <label>(YYYY-MM-DD)</label>
 	</br>
-	<label>Date de début</label> : <input type="text" name="date_debut" require/>
-	</br>
-	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/> <label>(YYYY-MM-DD)</label>
 	</br>
 	<label>Entreprise</label> : <input type="text" name="entreprise" require/>
 	</br>

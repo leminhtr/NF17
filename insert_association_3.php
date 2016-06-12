@@ -34,9 +34,9 @@ include 'mise_en_page.html';
 	</br>
 	<label>Nom de l'association</label> : <input type="text" name="nom" require/>
 	</br>
-	<label>Date de début</label> : <input type="text" name="date_debut" require/>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/> <label>(YYYY-MM-DD)</label>
 	</br>
-	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/> <label>(YYYY-MM-DD)</label>
 	</br>
 	</br>
 	<input type="submit" value="valider" />

@@ -21,31 +21,24 @@ include 'mise_en_page.html';
 	<label>Nom anglais</label> : <input type="text" name="DE_en" require/>
 	</br>
 	</br>
-	<label>Formation dans la langue d'origine<label>
+	<label>Formation en Français<label>
 	</br>
 	<label>Titre</label> : <input type="text" name="titre1" require/>
 	</br>
 	<label>Type</label> : <input type="text" name="type1" require/>
 	</br>
-	<label>Langue</label> : <select name="langue1" id="langue1">
-		<option value='FR'>Français</option>
-		<option value='EN'>English</option></select>
 	</br>
 	</br>
-	<label>Formation dans la langue de traduction<label>
+	<label>Formation en Anglais<label>
 	</br>
 	<label>Titre</label> : <input type="text" name="titre2" require/>
 	</br>
 	<label>Type</label> : <input type="text" name="type2" require/>
 	</br>
-	<label>Langue</label> : <select name="langue2" id="langue2">
-		<option value='FR'>Français</option>
-		<option value='EN'>English</option></select>
 	</br>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/> <label>(YYYY-MM-DD)</label>
 	</br>
-	<label>Date de début</label> : <input type="text" name="date_debut" require/>
-	</br>
-	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/> <label>(YYYY-MM-DD)</label>
 	</br>
 	<label>Etablissement</label> : <input type="text" name="etablissement" require/>
 	</br>

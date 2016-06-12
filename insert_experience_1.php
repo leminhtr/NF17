@@ -6,6 +6,8 @@ include 'mise_en_page.html';
 
 <?php
 
+	//On demande a l'utilisateur si il veut inserer une experience qui a ete traduite ou non
+
 	echo "L'expérience que vous voulez insérer est elle traduite ?";
 	echo '<p><a href="insert_experience_2.php">Oui</a></p>';
 	echo '<p><a href="insert_experience_3.php">Non</a></p>';

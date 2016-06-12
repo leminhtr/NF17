@@ -20,7 +20,7 @@ include 'mise_en_page.html';
 	</br>
 	<label>Titre</label> : <input type="text" name="titre" require/>
 	</br>
-	<label>date</label> : <input type="text" name="date" require/>
+	<label>Date</label> : <input type="text" name="date" require/> <label>(YYYY/MM/DD)</label>
 	</br>
 	<label>Contenu</br></label> : <textarea name="cont" id="cont" rows="10" cols="50"> </textarea>
 	</br>

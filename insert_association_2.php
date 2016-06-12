@@ -21,33 +21,25 @@ include 'mise_en_page.html';
 	<label>Nom anglais</label> : <input type="text" name="statut_en" require/>
 	</br>
 	</br>
-	<label>Association dans la langue d'origine<label>
+	<label>Association en Français<label>
 	</br>
 	<label>Titre</label> : <input type="text" name="titre1" require/>
-	</br>
-	<label>Langue</label> : <select name="langue1" id="langue1">
-		<option value='FR'>Français</option>
-		<option value='EN'>English</option></select>
 	</br>
 	<label>Description</br></label> : <textarea name="description1" id="description1" rows="10" cols="50"> </textarea>
 	</br>
 	</br>
-	<label>Association dans la langue de traduction<label>
+	<label>Association en Anglais<label>
 	</br>
 	<label>Titre</label> : <input type="text" name="titre2" require/>
-	</br>
-	<label>Langue</label> : <select name="langue2" id="langue2">
-		<option value='FR'>Français</option>
-		<option value='EN'>English</option></select>
 	</br>
 	<label>Description</br></label> : <textarea name="description2" id="description2" rows="10" cols="50"> </textarea>
 	</br>
 	</br>
 	<label>Nom de l'association</label> : <input type="text" name="nom" require/>
 	</br>
-	<label>Date de début</label> : <input type="text" name="date_debut" require/>
+	<label>Date de début</label> : <input type="text" name="date_debut" require/> <label>(YYYY-MM-DD)</label>
 	</br>
-	<label>Date de fin</label> : <input type="text" name="date_fin" require/>
+	<label>Date de fin</label> : <input type="text" name="date_fin" require/> <label>(YYYY-MM-DD)</label>
 	</br>
 	</br>
 	<input type="submit" value="valider" />
