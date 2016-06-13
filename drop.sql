@@ -4,7 +4,8 @@ DROP VIEW candidats_formations;
 DROP VIEW candidats_langues;
 DROP VIEW entreprises_secteurs;
 DROP VIEW candidats_experiences_pro;
-
+DROP VIEW candidats_associations;
+DROP VIEW candidats_publications;
 
 DROP TABLE Posseder_Referent;
 DROP TABLE Parler_Langue;
