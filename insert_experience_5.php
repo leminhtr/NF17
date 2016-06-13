@@ -46,7 +46,7 @@ include 'mise_en_page.html';
 
 		//S'il n'existe pas, on le creer
 
-		$vSQL2 = "INSERT INTO SecteurEntreprise(id_SE,nom_entreprise) VALUES ('$vid_sa','$vEntpr');";
+		$vSQL2 = "INSERT INTO SecteurEntreprise(secteur_activite,nom_entreprise) VALUES ('$vid_sa','$vEntpr');";
 		pg_query($vCon,$vSQL2);
 	}
 

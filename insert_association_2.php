@@ -16,30 +16,30 @@ include 'mise_en_page.html';
 	</br>
 	<label>Statut</label>
 	</br>
-	<label>Nom français</label> : <input type="text" name="statut_fr" require/>
+	<label>Nom français</label> : <input type="text" name="statut_fr" required/>
 	</br>
-	<label>Nom anglais</label> : <input type="text" name="statut_en" require/>
+	<label>Nom anglais</label> : <input type="text" name="statut_en" required/>
 	</br>
 	</br>
 	<label>Association en Français<label>
 	</br>
-	<label>Titre</label> : <input type="text" name="titre1" require/>
+	<label>Titre</label> : <input type="text" name="titre1" required/>
 	</br>
 	<label>Description</br></label> : <textarea name="description1" id="description1" rows="10" cols="50"> </textarea>
 	</br>
 	</br>
 	<label>Association en Anglais<label>
 	</br>
-	<label>Titre</label> : <input type="text" name="titre2" require/>
+	<label>Titre</label> : <input type="text" name="titre2" required/>
 	</br>
 	<label>Description</br></label> : <textarea name="description2" id="description2" rows="10" cols="50"> </textarea>
 	</br>
 	</br>
-	<label>Nom de l'association</label> : <input type="text" name="nom" require/>
+	<label>Nom de l'association</label> : <input type="text" name="nom" required/>
 	</br>
-	<label>Date de début</label> : <input type="text" name="date_debut" require/> <label>(YYYY-MM-DD)</label>
+	<label>Date de début</label> : <input type="text" name="date_debut" required/> <label>(YYYY-MM-DD)</label>
 	</br>
-	<label>Date de fin</label> : <input type="text" name="date_fin" require/> <label>(YYYY-MM-DD)</label>
+	<label>Date de fin</label> : <input type="text" name="date_fin" required/> <label>(YYYY-MM-DD)</label>
 	</br>
 	</br>
 	<input type="submit" value="valider" />

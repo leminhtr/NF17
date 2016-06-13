@@ -109,7 +109,7 @@ include 'mise_en_page.html';
 
 		//S'il existe pas, on le creer
 
-		$vSQL2 = "INSERT INTO Suivre_Formation(id_candidat,id_formation) VALUES ('$vID','$vId_formation');";
+		$vSQL2 = "INSERT INTO Suivre_Formation(id_candidat,id_formation) VALUES ('$vID','$vid_formation');";
 		pg_query($vCon,$vSQL2);
 	}
 

@@ -16,7 +16,7 @@ include 'mise_en_page.html';
 	?>
 	<p>
 	</br>
-	<label>Nom</label> : <input type="text" name="nom" require/>
+	<label>Nom</label> : <input type="text" name="nom" required/>
 	</br>
 	<label>Langue</label> : <select name="langue" id="langue">
 		<option value='FR'>Français</option>

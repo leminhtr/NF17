@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<?php session_start(); /*Permet de passer de page en page l'identifiant artificiel du candidat créant son CV*/ ?>
+	<?php session_start(); /*Permet de passer de page en page l'identifiant artificiel du candidat créant son CV*/ ?>
 
 <html>
 <?php
@@ -29,8 +28,8 @@ include 'mise_en_page.html';
 
 ?>
 	<h2>Petit récapitulatif des données que vous avez déjà entrées</h2>
-	<h3>Présentation du CV : Version en français</h3>
 	<table border="1">
+	<tr><h3>Présentation du CV : Version en français</h3></tr>
 	<tr><th>Statut du CV</th><th>Titre</th><th>Description</th></tr>
 
 <?php
@@ -46,8 +45,9 @@ include 'mise_en_page.html';
 	echo "</tr>";}
 
 ?>
-	<h3>Présentation du CV : Version en anglais</h3>
+	
 	<table border="1">
+	<tr><h3>Présentation du CV : Version en anglais</h3></tr>
 	<tr><th>Statut du CV</th><th>Titre</th><th>Description</th></tr>
 
 <?php
@@ -64,8 +64,9 @@ include 'mise_en_page.html';
 
 
 ?>
-	<h3>Informations personnelles</h3>
+
 	<table border="1">
+	<tr><h3>Informations personnelles</h3></tr>
 	<tr><th>Identifiant</th><th>Nom</th><th>Prenom</th><th>Mail</th><th>Mot de Passe</th><th>Telephone</th><th>URL</th></tr>
 
 <?php
@@ -85,8 +86,9 @@ include 'mise_en_page.html';
 
 
 ?>
-	<h3>Niveaux de langue</h3>
+
 	<table border="1">
+	<tr><h3>Niveaux de langue</h3></tr>
 	<tr><th>Langue</th><th>Langue</th><th>Niveau</th></tr>
 
 <?php
@@ -106,7 +108,8 @@ include 'mise_en_page.html';
 	$_SESSION['i'] = 1; //Variable qui pourra itérer le nombre de Compétence dans les prochaines pages
 	$_SESSION['j'] = 1; //Variable qui pourra itérer le nombre de Formation dans les prochaines pages
 	$_SESSION['k'] = 1; //Variable qui pourra itérer le nombre d'experiences dans les prochaines pages
-	$_SESSION['l'] = 1; //Variable qui pourra itérer le nombre de poste assocition dans les prochaines pages
+	$_SESSION['l'] = 1; //Variable qui pourra itérer le nombre de poste associations dans les prochaines pages
+	$_SESSION['m'] = 1; //Variable qui pourra itérer le nombre de publications dans les prochaines pages
 	
 	
 
@@ -114,55 +117,4 @@ include 'mise_en_page.html';
 
 <p><a href="insert_competence_1.php">Continuer</a></p>
 
-=======
-<?php session_start(); /*Permet de passer de page en page l'identifiant artificiel du candidat créant son CV*/ ?>
 
-<html>
-<?php
-include 'mise_en_page.html';
-?>
-
-<h1>Etape 4 de la création de votre CV : choix d'un référent</h1>
-
-<?php
-	/*Concetion à la base de donnée*/
-	include "connect_projet.php";
-	$vConn = fConnect();
-	/*Récupération de l'identifiant du candidat conservé dans la session*/
-	$vid_individu = $_SESSION['id_individu'];
-	/*Récupération de la variable passée en formulaire*/
-	$vid_referent = $_POST['id'];
-
-	/*Insertion dans la table posseder_referent du liant unifiant le nouveau candidat à son référent préalablement choisit*/
-	$vSql = "INSERT INTO Posseder_Referent (id_candidat, id_referent) VALUES ('$vid_individu', '$vid_referent')";
-	pg_query($vConn, $vSql);
-
-	/*Requête renvoyant le mail, nom et prénom du référent choisit*/
-	$vSql ="SELECT nom, prenom, mail FROM Individus WHERE id_individu = '$vid_referent';";
-	$vQuery=pg_query($vConn, $vSql);
-	$vResult = pg_fetch_array($vQuery);
-	echo "Voici le nom, prénom et email du référent que vous avez choisit : $vResult[nom] $vResult[prenom] : $vResult[mail] ";
-
-	/* //affichage des liaisons existante entre candidat et référent
-	$vSql ="SELECT id_candidat, id_referent FROM Posseder_Referent;";
-	$vQuery=pg_query($vConn, $vSql);
-	while ($vResult = pg_fetch_array($vQuery, null, PGSQL_BOTH)) {
-		echo "<tr>";
-
-		echo "<td>$vResult[0]</td>";
-		echo "<td>$vResult[1]</td>";
-
-		echo "</tr>";}*/
-
-	$_SESSION['i'] = 1; //Variable qui pourra itérer le nombre de Compétence dans les prochaines pages
-	$_SESSION['j'] = 1; //Variable qui pourra itérer le nombre de Formation dans les prochaines pages
-	$_SESSION['k'] = 1; //Variable qui pourra itérer le nombre d'experiences dans les prochaines pages
-	$_SESSION['l'] = 1; //Variable qui pourra itérer le nombre de poste assocition dans les prochaines pages
-	
-	echo '<p><a href="insert_competence_1.php">Continuer</a></p>';
-
-	
-
-?>
-
->>>>>>> 02db5b16449d257f600d800f80ae159c9af3afae

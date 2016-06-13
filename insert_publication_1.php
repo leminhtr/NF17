@@ -16,11 +16,11 @@ include 'mise_en_page.html';
 	?>
 	<p>
 	</br>
-	<label>ISBN</label> : <input type="text" name="isbn" require/>
+	<label>ISBN</label> : <input type="text" name="isbn" required/>
 	</br>
-	<label>Titre</label> : <input type="text" name="titre" require/>
+	<label>Titre</label> : <input type="text" name="titre" required/>
 	</br>
-	<label>Date</label> : <input type="text" name="date" require/> <label>(YYYY/MM/DD)</label>
+	<label>Date</label> : <input type="text" name="date" required/> <label>(YYYY/MM/DD)</label>
 	</br>
 	<label>Contenu</br></label> : <textarea name="cont" id="cont" rows="10" cols="50"> </textarea>
 	</br>

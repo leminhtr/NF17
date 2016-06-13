@@ -16,31 +16,31 @@ include 'mise_en_page.html';
 	</br>
 	<label>Domaine d'étude</label>
 	</br>
-	<label>Nom français</label> : <input type="text" name="DE_fr" require/>
+	<label>Nom français</label> : <input type="text" name="DE_fr" required/>
 	</br>
-	<label>Nom anglais</label> : <input type="text" name="DE_en" require/>
+	<label>Nom anglais</label> : <input type="text" name="DE_en" required/>
 	</br>
 	</br>
 	<label>Formation en Français<label>
 	</br>
-	<label>Titre</label> : <input type="text" name="titre1" require/>
+	<label>Titre</label> : <input type="text" name="titre1" required/>
 	</br>
-	<label>Type</label> : <input type="text" name="type1" require/>
+	<label>Type</label> : <input type="text" name="type1" required/>
 	</br>
 	</br>
 	</br>
 	<label>Formation en Anglais<label>
 	</br>
-	<label>Titre</label> : <input type="text" name="titre2" require/>
+	<label>Titre</label> : <input type="text" name="titre2" required/>
 	</br>
-	<label>Type</label> : <input type="text" name="type2" require/>
+	<label>Type</label> : <input type="text" name="type2" required/>
 	</br>
 	</br>
-	<label>Date de début</label> : <input type="text" name="date_debut" require/> <label>(YYYY-MM-DD)</label>
+	<label>Date de début</label> : <input type="text" name="date_debut" required/> <label>(YYYY-MM-DD)</label>
 	</br>
-	<label>Date de fin</label> : <input type="text" name="date_fin" require/> <label>(YYYY-MM-DD)</label>
+	<label>Date de fin</label> : <input type="text" name="date_fin" required/> <label>(YYYY-MM-DD)</label>
 	</br>
-	<label>Etablissement</label> : <input type="text" name="etablissement" require/>
+	<label>Etablissement</label> : <input type="text" name="etablissement" required/>
 	</br>
 	<label>Pays</label> : <input type="text" name="pays" />
 	</br>
