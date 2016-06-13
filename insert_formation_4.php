@@ -75,7 +75,7 @@ include 'mise_en_page.html';
 
 		//S'il n'existe pas, on le creer
 
-		$vSQL2 = "INSERT INTO Formations_Traduites(titre,type,langue,id_formation) VALUES ('$vtitre1','$vtype1','$vlangue1','$vid_formation');";
+		$vSQL2 = "INSERT INTO Formations_Traduites(titre,type,langue,id_formation) VALUES ('$vtitre1','$vtype1','FR','$vid_formation');";
 		pg_query($vCon,$vSQL2);
 	}
 	
@@ -92,7 +92,7 @@ include 'mise_en_page.html';
 
 		//S'il n'existe pas, on le creer
 
-		$vSQL2 = "INSERT INTO Formations_Traduites(titre,type,langue,id_formation) VALUES ('$vtitre2','$vtype2','$vlangue2','$vid_formation');";
+		$vSQL2 = "INSERT INTO Formations_Traduites(titre,type,langue,id_formation) VALUES ('$vtitre2','$vtype2','EN','$vid_formation');";
 		pg_query($vCon,$vSQL2);
 	}
 

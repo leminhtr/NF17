@@ -37,7 +37,7 @@ include 'mise_en_page.html';
 	$vEntpr = $_POST['entreprise'];
 	$vid_sa = $vResult[id_sa];
 
-	$vSQL = "SELECT secteur_activite, nom_entreprise FROM SecteurEntreprise WHERE secteur_activite = '$vId_SA' AND nom_entreprise = '$vEntpr';";
+	$vSQL = "SELECT secteur_activite, nom_entreprise FROM SecteurEntreprise WHERE secteur_activite = '$vid_sa' AND nom_entreprise = '$vEntpr';";
 	$vQuery = pg_query($vCon,$vSQL);
 
 	//On regarde si le tuple (secteur_activite, nom_entreprise) existe
@@ -78,7 +78,7 @@ include 'mise_en_page.html';
 	
 	$vfonct1 = $_POST['fonct1'];
 	$vlangue1 = $_POST['langue1'];
-	$vSQL = "SELECT * FROM Experiences_Pro_Traduites WHERE id_exp_pro '$vid_exp' AND fonction = '$vfonct1' AND langue = '$vlangue1';";
+	$vSQL = "SELECT * FROM Experiences_Pro_Traduites WHERE id_exp_pro = '$vid_exp' AND fonction = '$vfonct1' AND langue = '$vlangue1';";
 	$vQuery = pg_query($vCon,$vSQL);
 
 	//On regarde si le tuple (id_exp_pro,fonction,'FR') existe

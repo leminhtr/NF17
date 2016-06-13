@@ -78,7 +78,7 @@ include 'mise_en_page.html';
 	$vid_exp = $vResult[id_exp_pro];
 	
 	$vfonct1 = $_POST['fonct1'];
-	$vSQL = "SELECT * FROM Experiences_Pro_Traduites WHERE id_exp_pro '$vid_exp' AND fonction = '$vfonct1' AND langue = 'FR';";
+	$vSQL = "SELECT * FROM Experiences_Pro_Traduites WHERE id_exp_pro = '$vid_exp' AND fonction = '$vfonct1' AND langue = 'FR';";
 	$vQuery = pg_query($vCon,$vSQL);
 
 	//On regarde si le tuple (id_exp_pro,fonction,'FR') existe
@@ -87,12 +87,12 @@ include 'mise_en_page.html';
 
 		//S'il n'existe pas, on le creer
 
-		$vSQL2 = "INSERT INTO Experiences_Pro_Traduites(fonction,langue) VALUES ('$vfonct1','FR');";
+		$vSQL2 = "INSERT INTO Experiences_Pro_Traduites(id_exp_pro,fonction,langue) VALUES ('$vid_exp','$vfonct1','FR');";
 		pg_query($vCon,$vSQL2);
 	}
 
 	$vfonct2 = $_POST['fonct2'];
-	$vSQL = "SELECT * FROM Experiences_Pro_Traduites WHERE id_exp_pro '$vid_exp' AND fonction = '$vfonct2' AND langue = 'EN';";
+	$vSQL = "SELECT * FROM Experiences_Pro_Traduites WHERE id_exp_pro = '$vid_exp' AND fonction = '$vfonct2' AND langue = 'EN';";
 	$vQuery = pg_query($vCon,$vSQL);
 
 	//On regarde si le tuple (id_exp_pro,fonction,'EN') existe
@@ -101,7 +101,7 @@ include 'mise_en_page.html';
 
 		//S'il n'existe pas, on le creer
 
-		$vSQL2 = "INSERT INTO Experiences_Pro_Traduites(fonction,langue) VALUES ('$vfonct2','EN');";
+		$vSQL2 = "INSERT INTO Experiences_Pro_Traduites(id_exp_pro,fonction,langue) VALUES ('$vid_exp','$vfonct2','EN');";
 		pg_query($vCon,$vSQL2);
 	}
 

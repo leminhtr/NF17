@@ -21,8 +21,8 @@ include 'mise_en_page.html';
 
 		//S'il n'existe pas, on le creer
 
-		$vSQL = "INSERT INTO DatePublication(ISBN,date) VALUES ('$vIsbn','$vDate');";
-		pg_query($vCon,$vSQL);
+		$vSQL2 = "INSERT INTO DatePublication(ISBN,date) VALUES ('$vIsbn','$vDate');";
+		pg_query($vCon,$vSQL2);
 	}
 
 
@@ -45,8 +45,8 @@ include 'mise_en_page.html';
 
 		//s'il n'existe pas, on le creer
 
-		$vSQL = "INSERT INTO Publications(titre,id_date_pub,contenu) VALUES ('$vTitre','$vid_date','$vCont');";
-		pg_query($vCon,$vSQL);
+		$vSQL2 = "INSERT INTO Publications(titre,id_date_pub,contenu) VALUES ('$vTitre','$vid_date','$vCont');";
+		pg_query($vCon,$vSQL2);
 	}
 
 	//On recupere l'id_pub
@@ -70,8 +70,8 @@ include 'mise_en_page.html';
 
 		//S'il n'existe pas, on le creer
 
-		$vSQL = "INSERT INTO Ecrire_Publication(id_candidat,id_publication) VALUES ('$vID','$vid_pub');";
-		pg_query($vCon,$vSQL);
+		$vSQL2 = "INSERT INTO Ecrire_Publication(id_candidat,id_publication) VALUES ('$vID','$vid_pub');";
+		pg_query($vCon,$vSQL2);
 	}
 
 	echo "Voulez vous ajouter d'autres publications ?";

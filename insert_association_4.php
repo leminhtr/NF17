@@ -70,7 +70,7 @@ include 'mise_en_page.html';
 
 		//S'Il n'existe pas, on le creer
 
-		$vSQL2 = "INSERT INTO Postes_Associations_Traduits(description,langue,id_asso) VALUES ('$vDesc1','$vlangue1','$vid_asso');";
+		$vSQL2 = "INSERT INTO Postes_Associations_Traduits(description,langue,id_asso) VALUES ('$vDesc1','FR','$vid_asso');";
 		pg_query($vCon,$vSQL2);
 	}
 	
@@ -85,7 +85,7 @@ include 'mise_en_page.html';
 
 		//S'Il n'existe pas, on le creer
 
-		$vSQL2 = "INSERT INTO Postes_Associations_Traduits(description,langue,id_asso) VALUES ('$vDesc2','$vlangue2','$vid_asso');";
+		$vSQL2 = "INSERT INTO Postes_Associations_Traduits(description,langue,id_asso) VALUES ('$vDesc2','EN','$vid_asso');";
 		pg_query($vCon,$vSQL2);
 	}
 
